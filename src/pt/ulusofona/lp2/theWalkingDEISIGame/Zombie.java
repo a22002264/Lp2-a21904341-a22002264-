@@ -3,37 +3,45 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 public class Zombie {
 
 
-
-
-    int id;
-    int tipo;
+    int idTipo;
+    int x;
+    int y;
     String imagePNG;
+    int idCriatura;
+    String nomeCriatura;
 
+    public Zombie(int idCriatura, int idTipo, String nomeCriatura, int x, int y) {
+        this.idTipo = idTipo;
+        this.x = x;
+        this.y = y;
+        this.nomeCriatura = nomeCriatura;
+        this.idCriatura = idCriatura;
+
+
+    }
 
     public int getId() {
-        this.id=id;
-        return id;
+
+        return idCriatura;
     }
 
 
-    //como é que faço para obter a imagem
+
     public String getImagePNG() {
-        this.imagePNG=imagePNG;
 
 
-        return imagePNG;
+        return "zombie.png";
     }
 
-    public String  toString(){
+    public String toString() {
 
 
-        return" ";
+        return " ";
     }
 
     public int getTipo() {
 
-        this.tipo=tipo;
-        return tipo;
+        return idTipo;
     }
 
 }

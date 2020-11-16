@@ -9,30 +9,7 @@ public class Main {
 
 
 
-    public boolean startGame(File ficheiroInicial){
-        return true;
-    }
 
-    public int[] getWorldSize(){
-        return null;
-    }
-
-    public int getInitialTeam(){
-        return 1;
-    }
-
-    public List<Humano> getHumans(){
-        return null;
-    }
-
-
-    public List<Zombie> getZombies(){
-        return null;
-    }
-
-    public boolean move(int xO, int yO, int xD, int yD){
-        return true;
-    }
 
     public boolean gameIsOver(){
         return true;

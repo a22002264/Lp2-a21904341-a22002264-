@@ -4,23 +4,29 @@ public class Equipamento {
 
     int id;
     int idTipo;
+    int x;
+    int y;
+
+    public Equipamento(int id, int idTipo, int x, int y) {
+
+        this.id = id;
+        this.idTipo = idTipo;
+        this.x = x;
+        this.y = y;
 
 
-     public void Equipamento(int id, int idTipo){
+    }
 
-
-     }
 
     public int getId() {
 
-         this.id=id;
         return id;
     }
 
 
     public int getIdTipo() {
 
-         this.idTipo=idTipo;
+
         return idTipo;
     }
 }
