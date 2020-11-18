@@ -19,14 +19,11 @@ public class Equipamento {
 
 
     public int getId() {
-
-        return id;
+        return this.id;
     }
 
-
+    // retirar esta merda
     public int getIdTipo() {
-
-
-        return idTipo;
+        return this.idTipo;
     }
 }

@@ -9,15 +9,9 @@ import java.util.Scanner;
 
 public class TWDGameManager {
     int numeroLinhas;
+    int dias = 0;
     int numeroColunas;
-    int idEquipa;
-    int numeroCriaturas;
-    int idCriatura;
-    int idTipo;
-    int nomeCriatura;
-    int x;
-    int y;
-    int idEquipamento;
+    int idEquipaAtual;
     ArrayList<Zombie> zombies;
     ArrayList<Humano> humanos;
     ArrayList<Equipamento> equipamentos;
@@ -51,7 +45,7 @@ public class TWDGameManager {
                 if (numeroDaLinha == 1) {
                     String linha1 = leitorFicheiro.nextLine();
 
-                    idEquipa = Integer.parseInt(linha1);
+                    idEquipaAtual = Integer.parseInt(linha1);
                     numeroDaLinha++;
                     continue;
 
@@ -140,7 +134,7 @@ public class TWDGameManager {
     }
 
     public int getInitialTeam() {
-        return idEquipa;
+        return idEquipaAtual;
     }
 
     public List<Humano> getHumans() {
@@ -180,4 +174,59 @@ public class TWDGameManager {
     }
 
  */
+public boolean gameIsOver(){
+    return this.dias == 12;
+}
+
+public List<String> getAuthors(){
+        ArrayList<String> autores = new ArrayList<>();
+        autores.add("Rodrigo Sousa");
+        autores.add("Tomás Maia");
+        return autores;
+    }
+    public int getCurrentTeamId(){
+        return this.idEquipaAtual;
+    }
+
+    public int getElementId(int x, int y) {
+        for (Zombie morto : this.zombies){
+            if (morto.x == x && morto.y == y){
+                return morto.idCriatura;
+            }
+        }
+        for (Humano vivo : this.humanos){
+            if (vivo.x == x && vivo.y == y){
+                return vivo.idCriatura;
+            }
+        }
+        for (Equipamento ferramenta : this.equipamentos) {
+            if (ferramenta.x == x && ferramenta.y == y) {
+                    return ferramenta.id;
+                }
+            }
+        return 0;
+        }
+
+    public List<String> getSurvivors(){
+        ArrayList<String> survivors = new ArrayList<>();
+        return survivors;
+    }
+
+    public boolean isDay(){
+        return this.dias == 1 || this.dias % 2 == 0;
+    }
+
+    public boolean hasEquipment(int creatureId, int equipmentTypeId){
+        for (Zombie morto : this.zombies){
+            if (creatureId == morto.idCriatura && morto.idCriatura == equipmentTypeId){
+                return true;
+            }
+        }
+        for (Humano vivo : this.humanos){
+            if (creatureId == vivo.idCriatura && vivo.idCriatura == equipmentTypeId){
+                return true;
+            }
+        }
+        return false;
+    }
 }

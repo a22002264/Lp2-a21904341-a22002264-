@@ -2,7 +2,6 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Humano {
 
-
     int idTipo;
     String imagePNG;
     int x;
@@ -23,26 +22,20 @@ public class Humano {
 
 
     public int getId() {
-
-        return idCriatura;
+        return this.idCriatura;
     }
 
 
     public String getImagePNG() {
-
-
         return "human.png";
     }
 
     public String toString() {
-
-
         return " ";
     }
 
+    // retirar esta merda
     public int getTipo() {
-
-
         return idTipo;
     }
 

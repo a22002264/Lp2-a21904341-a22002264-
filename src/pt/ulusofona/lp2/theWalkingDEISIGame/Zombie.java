@@ -21,26 +21,21 @@ public class Zombie {
     }
 
     public int getId() {
-
-        return idCriatura;
+        return this.idCriatura;
     }
 
 
 
     public String getImagePNG() {
-
-
         return "zombie.png";
     }
 
     public String toString() {
-
-
         return " ";
     }
 
+    // retirar esta merda
     public int getTipo() {
-
         return idTipo;
     }
 
