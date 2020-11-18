@@ -150,21 +150,34 @@ public class TWDGameManager {
     public List<Zombie> getZombies() {
         return zombies;
     }
-
+/*
     public boolean move(int xO, int yO, int xD, int yD) {
 
+        if (idTipo==0) {
+
+
+            if (xD < numeroLinhas && yD < numeroColunas) {
+                for (int i = 0; i < zombies.size(); i++) {
+
+                }
+
+            } else {
+                return false;
+            }
 //xd e yd sao validos dentro do mapa(if e verificar se o tamanh do xd ou yd  sao maiores que o numero de linhas e colunas returnando falso)
-        // depois de ser valida(verificar se existe alguma criatura no xd e yd ,(percorrendo a lista de zombie e humano  atraves do for e verificar se existe ) sendo a jogada invalida return falso
-        //Agora a jogada já é valida
-        // se xo e yo for as coordendas de zombie e se o euipamento for xd yd  elimino o equipamento fazendo remove. na lista do equipamento. o zombie passa  a ter as coordenadas do equipamento removido
+            // depois de ser valida(verificar se existe alguma criatura no xd e yd ,(percorrendo a lista de zombie e humano  atraves do for e verificar se existe ) sendo a jogada invalida return falso
+            //Agora a jogada já é valida
+            // se xo e yo for as coordendas de zombie e se o equipamento for xd yd  elimino o equipamento fazendo remove. na lista do equipamento. o zombie passa  a ter as coordenadas do equipamento removido
 
 
-        //Agora tenho de fazer para o caso do humano
-        // se o idequipamento da classe humano for diefrente de zreo quer dizer que tem, se tiverr tem que largar o equipamento(guardar o equipamento na casa de origem xo yo)
-        //se nao tiver idequipamento vai ficar na sua posse
+            //Agora tenho de fazer para o caso do humano
+            // se o idequipamento da classe humano for diefrente de zreo quer dizer que tem, se tiverr tem que largar o equipamento(guardar o equipamento na casa de origem xo yo)
+            //se nao tiver idequipamento vai ficar na sua posse
 
-        return true;
+            return true;
+        }
+
     }
 
-
+ */
 }
