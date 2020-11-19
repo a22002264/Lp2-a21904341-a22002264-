@@ -5,7 +5,7 @@ public class TipoEquipamento {
     String titulo;
     int idTipo;
 
-
+    //talvez retirar este objecto visto q ainda n vamos usar nesta fase de projecto
 
     public void tipoEquipamento(String descricao,  int idTipo, String titulo ){
 
