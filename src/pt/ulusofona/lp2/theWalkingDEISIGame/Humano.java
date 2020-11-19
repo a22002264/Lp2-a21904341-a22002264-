@@ -2,42 +2,33 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Humano {
 
-    int idTipo;
+    int id;
     String imagePNG;
     int x;
     int y;
-    int idCriatura;
-    String nomeCriatura;
+    String nome;
     int idEquipamento;
+    int armas;
 
-    public Humano(int idCriatura, int idTipo, String nomeCriatura, int x, int y, int idEquipamento) {
-        this.idTipo = idTipo;
+    public Humano(int id, String nomeCriatura, int x, int y, int idEquipamento) {
+        this.id = id;
         this.x = x;
         this.y = y;
-        this.nomeCriatura = nomeCriatura;
-        this.idCriatura = idCriatura;
+        this.nome = nome;
         this.idEquipamento = idEquipamento;
 
     }
 
-
     public int getId() {
-        return this.idCriatura;
+        return this.id;
     }
-
 
     public String getImagePNG() {
         return "human.png";
     }
 
     public String toString() {
-        return " ";
+        return "1" + " | " + "Humano" + " | " + "Os Vivos" + " | " + nome + " " + armas + " @ (" + x + "," + y + ")";
     }
-
-    // retirar esta merda
-    public int getTipo() {
-        return idTipo;
-    }
-
 
 }

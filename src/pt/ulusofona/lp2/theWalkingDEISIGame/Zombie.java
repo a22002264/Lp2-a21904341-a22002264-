@@ -1,41 +1,30 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Zombie {
-
-
-    int idTipo;
+    int id;
+    String nome;
     int x;
     int y;
     String imagePNG;
-    int idCriatura;
-    String nomeCriatura;
+    int destroy;
 
-    public Zombie(int idCriatura, int idTipo, String nomeCriatura, int x, int y) {
-        this.idTipo = idTipo;
+    public Zombie(int id, String nomeCriatura, int x, int y) {
+        this.id = id;
         this.x = x;
         this.y = y;
-        this.nomeCriatura = nomeCriatura;
-        this.idCriatura = idCriatura;
-
-
+        this.nome = nome;
     }
 
     public int getId() {
-        return this.idCriatura;
+        return this.id;
     }
-
 
     public String getImagePNG() {
         return "zombie.png";
     }
 
     public String toString() {
-        return " ";
-    }
-
-    // retirar esta merda
-    public int getTipo() {
-        return idTipo;
+        return "0" + " | " + "Zombie" + " | " + "Os Outros" + " | " + nome + " " + destroy + " @ (" + x + "," + y + ")";
     }
 
 }
