@@ -11,19 +11,17 @@ public class TWDGameManager {
     int numeroLinhas;
     int numeroColunas;
     int idEquipa;
-    int numeroCriaturas;
-    int idCriatura;
-    int idTipo;
-    int nomeCriatura;
-    int x;
-    int y;
-    int idEquipamento;
+    int equipaAtual;
+    int dias = 0;
+
     ArrayList<Zombie> zombies;
     ArrayList<Humano> humanos;
     ArrayList<Equipamento> equipamentos;
 
     public TWDGameManager() {
-
+        this.humanos = new ArrayList<>();
+        this.equipamentos = new ArrayList<>();
+        this.zombies = new ArrayList<>();
     }
 
 
@@ -52,6 +50,7 @@ public class TWDGameManager {
                     String linha1 = leitorFicheiro.nextLine();
 
                     idEquipa = Integer.parseInt(linha1);
+                    equipaAtual = idEquipa;
                     numeroDaLinha++;
                     continue;
 
@@ -78,11 +77,11 @@ public class TWDGameManager {
 
                         if (idTipo == 0) {
 
-                            Zombie z = new Zombie(idCriatura, idTipo, nomeCriatura, x, y);
+                            Zombie z = new Zombie(idCriatura, idTipo, nomeCriatura, x, y);//colocar diretamente na classe humano e zombie epor causado x e y
                             zombies.add(z);
 
                         } else if (idTipo == 1) {
-                            Humano humano = new Humano(idCriatura, idTipo, nomeCriatura, x, y,0);
+                            Humano humano = new Humano(idCriatura, idTipo, nomeCriatura, x, y, 0);
                             humanos.add(humano);
                         }
 
@@ -150,34 +149,208 @@ public class TWDGameManager {
     public List<Zombie> getZombies() {
         return zombies;
     }
-/*
+
     public boolean move(int xO, int yO, int xD, int yD) {
+        if (validarCoordenadas(xO, yO, xD, yD) == false) {
+            return false;
+        }
+        if (verificarCriaturaDestino(xD, yD)) {
+            return false;
+        }
 
-        if (idTipo==0) {
-
-
-            if (xD < numeroLinhas && yD < numeroColunas) {
-                for (int i = 0; i < zombies.size(); i++) {
-
+        Equipamento equip = eEquipamento(xD, yD);
+        //nao é uma criatura o destino
+        if (equip == null) {
+            //nao é um equipamento e nem é uma criatura logo é um espaço vazio
+            mudarPosicaoCriatura(xO, yO, xD, yD);
+        } else {
+//logo é um equipamento
+            if (equipaAtual == 0) {
+                //equipa humano
+                Humano h = getHumano(xO, yO);
+                if (h.idEquipamento == 0) {
+                    h.idEquipamento = equip.getId();
+                } else {
+                    largarEquipamento(xO, yO, equip, h);
                 }
-
             } else {
-                return false;
+                //equipa zombie
+                destruirEquipamento(equip.id);
             }
-//xd e yd sao validos dentro do mapa(if e verificar se o tamanh do xd ou yd  sao maiores que o numero de linhas e colunas returnando falso)
-            // depois de ser valida(verificar se existe alguma criatura no xd e yd ,(percorrendo a lista de zombie e humano  atraves do for e verificar se existe ) sendo a jogada invalida return falso
-            //Agora a jogada já é valida
-            // se xo e yo for as coordendas de zombie e se o equipamento for xd yd  elimino o equipamento fazendo remove. na lista do equipamento. o zombie passa  a ter as coordenadas do equipamento removido
+        }
+
+        mudarEquipaAtual();
+        return true;
+    }
 
 
-            //Agora tenho de fazer para o caso do humano
-            // se o idequipamento da classe humano for diefrente de zreo quer dizer que tem, se tiverr tem que largar o equipamento(guardar o equipamento na casa de origem xo yo)
-            //se nao tiver idequipamento vai ficar na sua posse
+    private Humano getHumano(int xO, int yO) {
+        for (int b = 0; b < humanos.size(); b++) {
+            if (humanos.get(b).x == xO && humanos.get(b).y == yO) {
+                return humanos.get(b);
+            }
+        }
+        return null;
+    }
 
-            return true;
+
+    private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano h) {
+        int equipamentoAntigo = h.idEquipamento;
+
+        for (int a = 0; a < equipamentos.size(); a++) {
+            if (equipamentos.get(a).id == equipamentoAntigo) {
+                equipamentos.get(a).x = xO;
+                equipamentos.get(a).y = yO;
+            }
+        }
+        h.idEquipamento = novoEquipamento.id;
+
+    }
+
+
+    private void destruirEquipamento(int idEquipamento) {
+        for (int a = 0; a < equipamentos.size(); a++) {
+            if (equipamentos.get(a).id == idEquipamento && equipamentos.get(a).id == idEquipamento) {
+
+                equipamentos.remove(idEquipamento);
+
+            }
         }
 
     }
 
- */
+
+    private void mudarPosicaoCriatura(int xO, int yO, int xD, int yD) {
+        if (idEquipa == 0) {
+            for (int a = 0; a < humanos.size(); a++) {
+                if (humanos.get(a).x == xO && humanos.get(a).y == yO) {
+                    humanos.get(a).x = xD;
+                    humanos.get(a).y = yD;
+                }
+            }
+        } else {
+
+            for (int a = 0; a < zombies.size(); a++) {
+                if (zombies.get(a).x == xO && zombies.get(a).y == yO) {
+                    zombies.get(a).x = xD;
+                    zombies.get(a).y = yD;
+                }
+            }
+        }
+
+
+//Saber equipa que ezstá a joagar se for hiumano tenho de mudar a posiçao do humano se for zombie tenho de mudar a posição do zombie( if else). humano.x=xD 66 humano.y=yD   . else zombie igual como no humano.
+// fazer o ciclo for()  humanos,get(a)=XO &&yo    er chamar o get() Caso do zombie igual
+
+    }
+
+    private boolean verificarCriaturaDestino(int xD, int yD) {
+
+        for (int c = 0; c < zombies.size(); c++) {
+
+            if (zombies.get(c).x == xD && zombies.get(c).y == yD) {
+                return true;
+            }
+        }
+
+        for (int c = 0; c < humanos.size(); c++) {
+
+            if (humanos.get(c).x == xD && humanos.get(c).y == yD) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private void mudarEquipaAtual() {
+        if (idEquipa == 0) {
+            idEquipa = 1;
+        } else {
+            idEquipa = 0;
+        }
+
+    }
+
+    private boolean validarCoordenadas(int xO, int yO, int xD, int yD) {
+        if (xO < 0 || yO < 0 || xD < 0 || yD < 0) {
+            return false;
+        }
+        if (xD > (numeroLinhas - 1) || xO > (numeroLinhas - 1)) {
+            return false;
+        }
+        if ((yD > numeroColunas - 1) || yO > (numeroColunas - 1)) {
+            return false;
+        }
+        return true;
+    }
+
+    private Equipamento eEquipamento(int xD, int yD) {
+        for (int a = 0; a < equipamentos.size(); a++) {
+            if (equipamentos.get(a).x == xD && equipamentos.get(a).y == yD) {
+                return equipamentos.get(a);
+            }
+        }
+        return null;
+    }
+
+
+    public boolean gameIsOver() {
+        return this.dias == 12;
+    }
+
+    public List<String> getAuthors() {
+        ArrayList<String> autores = new ArrayList<>();
+        autores.add("Rodrigo Sousa");
+        autores.add("Tomás Maia");
+        return autores;
+    }
+
+    public int getCurrentTeamId() {
+        return this.equipaAtual;
+    }
+
+    public int getElementId(int x, int y) {
+        for (Zombie morto : this.zombies) {
+            if (morto.x == x && morto.y == y) {
+                return morto.idCriatura;
+            }
+        }
+        for (Humano vivo : this.humanos) {
+            if (vivo.x == x && vivo.y == y) {
+                return vivo.idCriatura;
+            }
+        }
+        for (Equipamento ferramenta : this.equipamentos) {
+            if (ferramenta.x == x && ferramenta.y == y) {
+                return ferramenta.id;
+            }
+        }
+        return 0;
+    }
+
+    public List<String> getSurvivors() {
+        ArrayList<String> survivors = new ArrayList<>();
+        return survivors;
+    }
+
+    public boolean isDay() {
+        return this.dias == 1 || this.dias % 2 == 0;
+    }
+
+    public boolean hasEquipment(int creatureId, int equipmentTypeId) {
+        for (Zombie morto : this.zombies) {
+            if (creatureId == morto.idCriatura && morto.idCriatura == equipmentTypeId) {
+                return true;
+            }
+        }
+        for (Humano vivo : this.humanos) {
+            if (creatureId == vivo.idCriatura && vivo.idCriatura == equipmentTypeId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
+

@@ -13,14 +13,12 @@ public class Equipa {
 
     public int getId() {
 
-        this.id = id;
-        return id;
+        return this.id;
     }
 
     public String getNomeEquipa() {
-        this.nomeEquipa = nomeEquipa;
 
 
-        return nomeEquipa;
+        return this.nomeEquipa;
     }
 }
