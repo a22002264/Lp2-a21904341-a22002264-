@@ -21,7 +21,7 @@ public class Zombie {
     }
     public String toString() {
 
-        return idCriatura + " | " + idTipo + "Os Vivos" + " | " + nomeCriatura + totalEquipDestrui + " @ (" + x + ", " + y + ")";
+        return idCriatura + " | " + idTipo +" | " + "Os Outros" + " | " + nomeCriatura + totalEquipDestrui + " @ (" + x + ", " + y + ")";
     }
     public int getTipo() {
         return idTipo;
