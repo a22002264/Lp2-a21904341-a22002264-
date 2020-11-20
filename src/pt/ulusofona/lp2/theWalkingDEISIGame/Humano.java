@@ -29,7 +29,7 @@ public class Humano {
 
     public String toString() {
 
-        return idCriatura + " | " + idTipo + " | " + "Os Vivos" + " | " + nomeCriatura + totalEquipamentos + " @ (" + x + ", " + y + ")";
+        return idCriatura + " | " + "Humano" + " | " + "Os Vivos" + " | " + nomeCriatura + totalEquipamentos + " @ (" + x + ", " + y + ")";
     }
 
     public int getTipo() {
