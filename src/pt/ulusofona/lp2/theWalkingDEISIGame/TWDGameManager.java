@@ -111,7 +111,7 @@ public class TWDGameManager {
             return false;
         }
 
-        if (validaEquipaAtual(xO, yO)==false) {
+        if (validaEquipaAtual(xO, yO) == false) {
             return false;
         }
         if (verificarCriaturaDestino(xD, yD)) {
@@ -130,7 +130,7 @@ public class TWDGameManager {
                 if (h.idEquipamento == 0) {
                     h.idEquipamento = equip.getId();
                     h.totalEquipamentos++;
-
+                   // equipamentos.remove(equip);
                 } else {
                     largarEquipamento(xO, yO, equip, h);
                 }
@@ -169,21 +169,22 @@ public class TWDGameManager {
     private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano h) {
         int equipamentoAntigo = h.idEquipamento;
         for (int a = 0; a < equipamentos.size(); a++) {
-            if (equipamentos.get(a).id == equipamentoAntigo) {
-                equipamentos.get(a).x = xO;
-                equipamentos.get(a).y = yO;
-            }
+                if (equipamentos.get(a).id == equipamentoAntigo) {
+                    equipamentos.get(a).x = xO;
+                    equipamentos.get(a).y = yO;
+
+                }
         }
         h.idEquipamento = novoEquipamento.id;
     }
 
     private boolean validaEquipaAtual(int xO, int yO) {
         Humano h = getHumano(xO, yO);
-        Zombie z =getZombie(xO, yO);
-        if(equipaAtual==0 && h==null){
+        Zombie z = getZombie(xO, yO);
+        if (equipaAtual == 0 && h == null) {
             return false;
         }
-        if(equipaAtual==1 && z==null){
+        if (equipaAtual == 1 && z == null) {
             return false;
         }
         return true;
@@ -316,17 +317,18 @@ public class TWDGameManager {
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
-        for (Zombie morto : this.zombies) {
-            if (creatureId == morto.idCriatura && morto.idCriatura == equipmentTypeId) {
-                return true;
+        for (Humano h : humanos) {
+            if (creatureId == h.idCriatura) {
+                for (Equipamento e : equipamentos) {
+                    if (e.id == h.idEquipamento && e.idTipo == equipmentTypeId) {
+                        return true;
+                    }
+                }
             }
         }
-        for (Humano vivo : this.humanos) {
-            if (creatureId == vivo.idCriatura && vivo.idCriatura == equipmentTypeId) {
-                return true;
-            }
-        }
+
         return false;
+
     }
 }
 
