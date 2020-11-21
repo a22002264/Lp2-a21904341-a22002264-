@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
+import javax.print.attribute.standard.JobHoldUntil;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,9 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
-    int numeroLinhas;
-    int dias = 0;
+    int turno = 1;
+    int diasDiaNoite = 2;
+    boolean isDay = true;
+
     int numeroColunas;
+    int numeroLinhas;
     int equipaAtual;
     ArrayList<Zombie> zombies;
     ArrayList<Humano> humanos;
@@ -57,7 +61,7 @@ public class TWDGameManager {
                             Zombie z = new Zombie(idCriatura, idTipo, nomeCriatura, x, y);//colocar diretamente na classe humano e zombie epor causado x e y
                             zombies.add(z);
                         } else if (idTipo == 1) {
-                            Humano humano = new Humano(idCriatura, idTipo, nomeCriatura, x, y, 0);
+                            Humano humano = new Humano(idCriatura, idTipo, nomeCriatura, x, y);
                             humanos.add(humano);
                         }
                         numeroDaLinha++;
@@ -78,6 +82,9 @@ public class TWDGameManager {
                 }
             }
             leitorFicheiro.close();
+
+            verficarSeHumanoTemEquip();
+
         } catch (FileNotFoundException exception) {
             String mensagem = "Erro: o ficheiro " + nomeFicheiro + " nao foi encontrado.";
             System.out.println(mensagem);
@@ -85,6 +92,22 @@ public class TWDGameManager {
         }
 //percorrer a lista com os equipamentos e percorrer a lista com humanos-- isto por causa da func move
         return true;
+    }
+
+    private void verficarSeHumanoTemEquip(){
+        ArrayList<Equipamento> paraRemover = new ArrayList<>();
+        for(Equipamento equip : equipamentos){
+            for (Humano h : humanos){
+                if(equip.x == h.x && equip.y == h.y){
+                    h.equipamento = equip;
+
+                    // remover equipamento do tabuleiro
+                    paraRemover.add(equip);
+                }
+            }
+        }
+
+        equipamentos.removeAll(paraRemover);
     }
 
     public int[] getWorldSize() {
@@ -127,10 +150,10 @@ public class TWDGameManager {
             if (equipaAtual == 0) {
                 //equipa humano
                 Humano h = getHumano(xO, yO);
-                if (h.idEquipamento == 0) {
-                    h.idEquipamento = equip.getId();
+                if (h.equipamento == null) {
+                    h.equipamento = equip;
                     h.totalEquipamentos++;
-                   // equipamentos.remove(equip);
+                    equipamentos.remove(equip);
                 } else {
                     largarEquipamento(xO, yO, equip, h);
                 }
@@ -143,10 +166,20 @@ public class TWDGameManager {
             mudarPosicaoCriatura(xO, yO, xD, yD);
         }
         mudarEquipaAtual();
-        dias++;
+        mudarDiaNoite();
+
+        ++turno;
+
         return true;
     }
 
+    private void mudarDiaNoite(){
+        --diasDiaNoite;
+        if(diasDiaNoite == 0){
+            isDay = !isDay;
+            diasDiaNoite = 2;
+        }
+    }
 
     private Humano getHumano(int xO, int yO) {
         for (int b = 0; b < humanos.size(); b++) {
@@ -167,15 +200,13 @@ public class TWDGameManager {
     }
 
     private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano h) {
-        int equipamentoAntigo = h.idEquipamento;
-        for (int a = 0; a < equipamentos.size(); a++) {
-                if (equipamentos.get(a).id == equipamentoAntigo) {
-                    equipamentos.get(a).x = xO;
-                    equipamentos.get(a).y = yO;
+        Equipamento equipamentoAntigo = h.equipamento;
+        equipamentoAntigo.x = xO;
+        equipamentoAntigo.y = yO;
+        equipamentos.add(equipamentoAntigo);
 
-                }
-        }
-        h.idEquipamento = novoEquipamento.id;
+        h.equipamento = novoEquipamento;
+        equipamentos.remove(novoEquipamento);
     }
 
     private boolean validaEquipaAtual(int xO, int yO) {
@@ -217,10 +248,6 @@ public class TWDGameManager {
                 }
             }
         }
-
-
-//Saber equipa que ezstá a joagar se for hiumano tenho de mudar a posiçao do humano se for zombie tenho de mudar a posição do zombie( if else). humano.x=xD 66 humano.y=yD   . else zombie igual como no humano.
-// fazer o ciclo for()  humanos,get(a)=XO &&yo    er chamar o get() Caso do zombie igual
 
     }
 
@@ -274,7 +301,7 @@ public class TWDGameManager {
 
 
     public boolean gameIsOver() {
-        return this.dias == 12;
+        return this.turno == 12;
     }
 
     public List<String> getAuthors() {
@@ -313,16 +340,14 @@ public class TWDGameManager {
     }
 
     public boolean isDay() {
-        return this.dias == 1 || this.dias % 2 == 0;
+        return this.isDay;
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for (Humano h : humanos) {
             if (creatureId == h.idCriatura) {
-                for (Equipamento e : equipamentos) {
-                    if (e.id == h.idEquipamento && e.idTipo == equipmentTypeId) {
-                        return true;
-                    }
+                if(h.equipamento != null && h.equipamento.idTipo == equipmentTypeId) {
+                    return true;
                 }
             }
         }
@@ -331,4 +356,3 @@ public class TWDGameManager {
 
     }
 }
-
