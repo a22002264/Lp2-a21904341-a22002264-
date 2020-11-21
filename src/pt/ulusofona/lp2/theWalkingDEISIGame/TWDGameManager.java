@@ -130,7 +130,7 @@ public class TWDGameManager {
         if (verificarCriaturaDestino(xD, yD)) {
             return false;
         }
-        Equipamento equip = buscaEquipamento(xD, yD);
+        Equipamento equip = buscarEquipamento(xD, yD);
 
         if (equip == null) {
             mudarPosicaoCriatura(xO, yO, xD, yD);
