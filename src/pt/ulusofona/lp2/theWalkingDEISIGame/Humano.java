@@ -6,17 +6,15 @@ public class Humano {
     int y;
     int idCriatura;
     String nomeCriatura;
-
     int totalEquipamentos;
-Equipamento equipamento;
+    Equipamento equipamento;
+
     public Humano(int idCriatura, int idTipo, String nomeCriatura, int x, int y) {
         this.idTipo = idTipo;
         this.x = x;
         this.y = y;
         this.nomeCriatura = nomeCriatura;
         this.idCriatura = idCriatura;
-
-
     }
 
     public int getId() {
@@ -28,8 +26,7 @@ Equipamento equipamento;
     }
 
     public String toString() {
-
-        return idCriatura + " | " + "Humano" + " | " + "Os Vivos" + " | " + nomeCriatura + " "+ totalEquipamentos + " @ (" + x + ", " + y + ")";
+        return idCriatura + " | " + "Humano" + " | " + "Os Vivos" + " | " + nomeCriatura + " " + totalEquipamentos + " @ (" + x + ", " + y + ")";
     }
 
     public int getTipo() {

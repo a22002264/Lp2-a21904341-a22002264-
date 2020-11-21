@@ -11,7 +11,6 @@ public class TWDGameManager {
     int turno = 1;
     int diasDiaNoite = 2;
     boolean isDay = true;
-
     int numeroColunas;
     int numeroLinhas;
     int equipaAtual;
@@ -30,7 +29,6 @@ public class TWDGameManager {
         int numeroDaLinha = 0;
         try {
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
-// enquanto o ficheiro tiver linhas não-lidas
             while (leitorFicheiro.hasNextLine()) {
                 if (numeroDaLinha == 0) {
                     String linha0 = leitorFicheiro.nextLine();
@@ -82,31 +80,25 @@ public class TWDGameManager {
                 }
             }
             leitorFicheiro.close();
-
             verficarSeHumanoTemEquip();
-
         } catch (FileNotFoundException exception) {
             String mensagem = "Erro: o ficheiro " + nomeFicheiro + " nao foi encontrado.";
             System.out.println(mensagem);
             return false;
         }
-//percorrer a lista com os equipamentos e percorrer a lista com humanos-- isto por causa da func move
         return true;
     }
 
-    private void verficarSeHumanoTemEquip(){
+    private void verficarSeHumanoTemEquip() {
         ArrayList<Equipamento> paraRemover = new ArrayList<>();
-        for(Equipamento equip : equipamentos){
-            for (Humano h : humanos){
-                if(equip.x == h.x && equip.y == h.y){
+        for (Equipamento equip : equipamentos) {
+            for (Humano h : humanos) {
+                if (equip.x == h.x && equip.y == h.y) {
                     h.equipamento = equip;
-
-                    // remover equipamento do tabuleiro
                     paraRemover.add(equip);
                 }
             }
         }
-
         equipamentos.removeAll(paraRemover);
     }
 
@@ -133,7 +125,6 @@ public class TWDGameManager {
         if (validarCoordenadas(xO, yO, xD, yD) == false) {
             return false;
         }
-
         if (validaEquipaAtual(xO, yO) == false) {
             return false;
         }
@@ -141,12 +132,10 @@ public class TWDGameManager {
             return false;
         }
         Equipamento equip = eEquipamento(xD, yD);
-        //nao é uma criatura o destino
+
         if (equip == null) {
-            //nao é um equipamento e nem é uma criatura logo é um espaço vazio
             mudarPosicaoCriatura(xO, yO, xD, yD);
         } else {
-//logo é um equipamento
             if (equipaAtual == 0) {
                 //equipa humano
                 Humano h = getHumano(xO, yO);
@@ -158,7 +147,6 @@ public class TWDGameManager {
                     largarEquipamento(xO, yO, equip, h);
                 }
             } else {
-                //equipa zombie
                 destruirEquipamento(equip.id);
                 Zombie z = getZombie(xO, yO);
                 z.totalEquipDestrui++;
@@ -167,15 +155,13 @@ public class TWDGameManager {
         }
         mudarEquipaAtual();
         mudarDiaNoite();
-
         ++turno;
-
         return true;
     }
 
-    private void mudarDiaNoite(){
+    private void mudarDiaNoite() {
         --diasDiaNoite;
-        if(diasDiaNoite == 0){
+        if (diasDiaNoite == 0) {
             isDay = !isDay;
             diasDiaNoite = 2;
         }
@@ -204,7 +190,6 @@ public class TWDGameManager {
         equipamentoAntigo.x = xO;
         equipamentoAntigo.y = yO;
         equipamentos.add(equipamentoAntigo);
-
         h.equipamento = novoEquipamento;
         equipamentos.remove(novoEquipamento);
     }
@@ -248,7 +233,6 @@ public class TWDGameManager {
                 }
             }
         }
-
     }
 
     private boolean verificarCriaturaDestino(int xD, int yD) {
@@ -346,13 +330,11 @@ public class TWDGameManager {
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
         for (Humano h : humanos) {
             if (creatureId == h.idCriatura) {
-                if(h.equipamento != null && h.equipamento.idTipo == equipmentTypeId) {
+                if (h.equipamento != null && h.equipamento.idTipo == equipmentTypeId) {
                     return true;
                 }
             }
         }
-
         return false;
-
     }
 }
