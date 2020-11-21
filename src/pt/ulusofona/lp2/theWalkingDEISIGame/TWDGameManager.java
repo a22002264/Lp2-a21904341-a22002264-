@@ -277,7 +277,7 @@ public class TWDGameManager {
         return true;
     }
 
-    private Equipamento buscaEquipamento(int xD, int yD) {
+    private Equipamento buscarEquipamento(int xD, int yD) {
         for (int a = 0; a < equipamentos.size(); a++) {
             if (equipamentos.get(a).x == xD && equipamentos.get(a).y == yD) {
                 return equipamentos.get(a);
