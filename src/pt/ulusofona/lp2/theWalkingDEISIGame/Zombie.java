@@ -1,23 +1,21 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Zombie {
-    int idTipo;
     int x;
     int y;
-    int idCriatura;
-    String nomeCriatura;
-    int totalEquipDestrui;
+    int id;
+    String nome;
+    int toolsDestroy;
 
-    public Zombie(int idCriatura, int idTipo, String nomeCriatura, int x, int y) {
-        this.idTipo = idTipo;
+    public Zombie(int id, String nome, int x, int y) {
         this.x = x;
         this.y = y;
-        this.nomeCriatura = nomeCriatura;
-        this.idCriatura = idCriatura;
+        this.nome = nome;
+        this.id = id;
     }
 
     public int getId() {
-        return this.idCriatura;
+        return this.id;
     }
 
     public String getImagePNG() {
@@ -26,10 +24,6 @@ public class Zombie {
 
     public String toString() {
 
-        return idCriatura + " | " + "Zombie" + " | " + "Os Outros" + " | " + nomeCriatura + " " + totalEquipDestrui + " @ (" + x + ", " + y + ")";
-    }
-
-    public int getTipo() {
-        return idTipo;
+        return id + " | " + "Zombie" + " | " + "Os Outros" + " | " +nome+ " " +toolsDestroy+ " @ (" +x+ ", " + y + ")";
     }
 }

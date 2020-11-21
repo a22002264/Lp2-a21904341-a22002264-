@@ -1,6 +1,5 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
-import javax.print.attribute.standard.JobHoldUntil;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -56,10 +55,10 @@ public class TWDGameManager {
                         int x = Integer.parseInt(dados1[3]);
                         int y = Integer.parseInt(dados1[4]);
                         if (idTipo == 0) {
-                            Zombie z = new Zombie(idCriatura, idTipo, nomeCriatura, x, y);//colocar diretamente na classe humano e zombie epor causado x e y
+                            Zombie z = new Zombie(idCriatura, nomeCriatura, x, y);
                             zombies.add(z);
                         } else if (idTipo == 1) {
-                            Humano humano = new Humano(idCriatura, idTipo, nomeCriatura, x, y);
+                            Humano humano = new Humano(idCriatura, nomeCriatura, x, y);
                             humanos.add(humano);
                         }
                         numeroDaLinha++;
@@ -138,18 +137,18 @@ public class TWDGameManager {
         } else {
             if (equipaAtual == 0) {
                 //equipa humano
-                Humano h = getHumano(xO, yO);
-                if (h.equipamento == null) {
-                    h.equipamento = equip;
-                    h.totalEquipamentos++;
+                Humano humano = getHumano(xO, yO);
+                if (humano.equipamento == null) {
+                    humano.equipamento = equip;
+                    humano.usados++;
                     equipamentos.remove(equip);
                 } else {
-                    largarEquipamento(xO, yO, equip, h);
+                    largarEquipamento(xO, yO, equip, humano);
                 }
             } else {
                 destruirEquipamento(equip.id);
-                Zombie z = getZombie(xO, yO);
-                z.totalEquipDestrui++;
+                Zombie morto = getZombie(xO, yO);
+                morto.toolsDestroy++;
             }
             mudarPosicaoCriatura(xO, yO, xD, yD);
         }
@@ -302,12 +301,12 @@ public class TWDGameManager {
     public int getElementId(int x, int y) {
         for (Zombie morto : this.zombies) {
             if (morto.x == x && morto.y == y) {
-                return morto.idCriatura;
+                return morto.id;
             }
         }
         for (Humano vivo : this.humanos) {
             if (vivo.x == x && vivo.y == y) {
-                return vivo.idCriatura;
+                return vivo.id;
             }
         }
         for (Equipamento ferramenta : this.equipamentos) {
@@ -328,9 +327,9 @@ public class TWDGameManager {
     }
 
     public boolean hasEquipment(int creatureId, int equipmentTypeId) {
-        for (Humano h : humanos) {
-            if (creatureId == h.idCriatura) {
-                if (h.equipamento != null && h.equipamento.idTipo == equipmentTypeId) {
+        for (Humano vivo : humanos) {
+            if (creatureId == vivo.id) {
+                if (vivo.equipamento != null && vivo.equipamento.idTipo == equipmentTypeId) {
                     return true;
                 }
             }
