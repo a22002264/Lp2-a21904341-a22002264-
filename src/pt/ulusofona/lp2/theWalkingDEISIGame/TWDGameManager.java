@@ -130,7 +130,7 @@ public class TWDGameManager {
         if (verificarCriaturaDestino(xD, yD)) {
             return false;
         }
-        Equipamento equip = eEquipamento(xD, yD);
+        Equipamento equip = buscaEquipamento(xD, yD);
 
         if (equip == null) {
             mudarPosicaoCriatura(xO, yO, xD, yD);
@@ -184,12 +184,12 @@ public class TWDGameManager {
         return null;
     }
 
-    private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano h) {
-        Equipamento equipamentoAntigo = h.equipamento;
+    private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano humano) {
+        Equipamento equipamentoAntigo = humano.equipamento;
         equipamentoAntigo.x = xO;
         equipamentoAntigo.y = yO;
         equipamentos.add(equipamentoAntigo);
-        h.equipamento = novoEquipamento;
+        humano.equipamento = novoEquipamento;
         equipamentos.remove(novoEquipamento);
     }
 
@@ -214,7 +214,6 @@ public class TWDGameManager {
         }
         equipamentos.remove(index);
     }
-
 
     private void mudarPosicaoCriatura(int xO, int yO, int xD, int yD) {
         if (equipaAtual == 0) {
@@ -248,7 +247,6 @@ public class TWDGameManager {
         return false;
     }
 
-
     private void mudarEquipaAtual() {
         if (equipaAtual == 0) {
             equipaAtual = 1;
@@ -270,10 +268,16 @@ public class TWDGameManager {
         if (xO != xD && yO != yD) {
             return false;
         }
+        if (Math.abs((xD - xO))  != 1 && Math.abs((xD - xO)) != 0){
+            return false;
+        }
+        if (Math.abs((yD - yO))  != 1 &&  Math.abs((yD - yO)) != 0){
+            return false;
+        }
         return true;
     }
 
-    private Equipamento eEquipamento(int xD, int yD) {
+    private Equipamento buscaEquipamento(int xD, int yD) {
         for (int a = 0; a < equipamentos.size(); a++) {
             if (equipamentos.get(a).x == xD && equipamentos.get(a).y == yD) {
                 return equipamentos.get(a);
@@ -282,9 +286,8 @@ public class TWDGameManager {
         return null;
     }
 
-
     public boolean gameIsOver() {
-        return this.turno == 12;
+        return this.turno == 11;
     }
 
     public List<String> getAuthors() {
