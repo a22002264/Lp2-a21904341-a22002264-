@@ -121,10 +121,10 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
-        if (validarCoordenadas(xO, yO, xD, yD) == false) {
+        if (!(validarCoordenadas(xO, yO, xD, yD))) {
             return false;
         }
-        if (validaEquipaAtual(xO, yO) == false) {
+        if (!(validaEquipaAtual(xO, yO))) {
             return false;
         }
         if (verificarCriaturaDestino(xD, yD)) {
@@ -154,7 +154,7 @@ public class TWDGameManager {
         }
         mudarEquipaAtual();
         mudarDiaNoite();
-        ++turno;
+        turno++;
         return true;
     }
 
@@ -261,10 +261,10 @@ public class TWDGameManager {
         if (xO < 0 || yO < 0 || xD < 0 || yD < 0) {
             return false;
         }
-        if (xD > (numeroLinhas - 1) || xO > (numeroLinhas - 1)) {
+        if (xD > (numeroLinhas) || xO > (numeroLinhas)) {
             return false;
         }
-        if ((yD > numeroColunas - 1) || yO > (numeroColunas - 1)) {
+        if ((yD > numeroColunas) || yO > (numeroColunas)) {
             return false;
         }
         if (xO != xD && yO != yD) {
