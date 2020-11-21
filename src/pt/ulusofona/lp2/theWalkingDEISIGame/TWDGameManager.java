@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TWDGameManager {
-    int turno = 1;
+    int turno = 0;
     int diasDiaNoite = 2;
     boolean isDay = true;
     int numeroColunas;
@@ -287,7 +287,7 @@ public class TWDGameManager {
     }
 
     public boolean gameIsOver() {
-        return this.turno == 11;
+        return this.turno == 12;
     }
 
     public List<String> getAuthors() {
