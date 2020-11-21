@@ -4,16 +4,28 @@ public class Equipamento {
     int idTipo;
     int x;
     int y;
+
     public Equipamento(int id, int idTipo, int x, int y) {
         this.id = id;
         this.idTipo = idTipo;
         this.x = x;
         this.y = y;
     }
+
     public int getId() {
         return this.id;
     }
+
     public int getIdTipo() {
         return this.idTipo;
     }
+
+    public void coordenadaVertical(int x) {
+        this.x = x;
+    }
+
+    public void coordenadaHorizontal(int y) {
+        this.y = y;
+    }
+
 }

@@ -26,4 +26,12 @@ public class Humano {
     public String toString() {
         return id + " | " + "Humano" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ (" + x + ", " + y + ")";
     }
+
+    public void coordenadaVertical(int x) {
+        this.x = x;
+    }
+
+    public void coordenadaHorizontal(int y) {
+        this.y = y;
+    }
 }

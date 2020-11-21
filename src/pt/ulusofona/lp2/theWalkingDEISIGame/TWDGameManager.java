@@ -186,8 +186,8 @@ public class TWDGameManager {
 
     private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano humano) {
         Equipamento equipamentoAntigo = humano.equipamento;
-        equipamentoAntigo.x = xO;
-        equipamentoAntigo.y = yO;
+        equipamentoAntigo.coordenadaVertical(xO);
+        equipamentoAntigo.coordenadaHorizontal(yO);
         equipamentos.add(equipamentoAntigo);
         humano.equipamento = novoEquipamento;
         equipamentos.remove(novoEquipamento);
@@ -219,15 +219,15 @@ public class TWDGameManager {
         if (equipaAtual == 0) {
             for (int a = 0; a < humanos.size(); a++) {
                 if (humanos.get(a).x == xO && humanos.get(a).y == yO) {
-                    humanos.get(a).x = xD;
-                    humanos.get(a).y = yD;
+                    humanos.get(a).coordenadaVertical(xD);
+                    humanos.get(a).coordenadaHorizontal(yD);
                 }
             }
         } else {
             for (int a = 0; a < zombies.size(); a++) {
                 if (zombies.get(a).x == xO && zombies.get(a).y == yO) {
-                    zombies.get(a).x = xD;
-                    zombies.get(a).y = yD;
+                    zombies.get(a).coordenadaVertical(xD);
+                    zombies.get(a).coordenadaHorizontal(yD);
                 }
             }
         }

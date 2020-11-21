@@ -26,4 +26,12 @@ public class Zombie {
 
         return id + " | " + "Zombie" + " | " + "Os Outros" + " | " +nome+ " " +toolsDestroy+ " @ (" +x+ ", " + y + ")";
     }
+
+    public void coordenadaVertical(int x) {
+        this.x = x;
+    }
+
+    public void coordenadaHorizontal(int y) {
+        this.y = y;
+    }
 }
