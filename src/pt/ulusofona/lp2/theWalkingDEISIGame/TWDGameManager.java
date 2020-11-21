@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class TWDGameManager {
     int turno = 0;
+    int inicialTeam;
     int diasDiaNoite = 2;
     boolean isDay = true;
     int numeroColunas;
@@ -39,6 +40,7 @@ public class TWDGameManager {
                 }
                 if (numeroDaLinha == 1) {
                     String linha1 = leitorFicheiro.nextLine();
+                    inicialTeam = Integer.parseInt(linha1);
                     equipaAtual = Integer.parseInt(linha1);
                     numeroDaLinha++;
                     continue;
@@ -109,7 +111,7 @@ public class TWDGameManager {
     }
 
     public int getInitialTeam() {
-        return equipaAtual;
+        return inicialTeam;
     }
 
     public List<Humano> getHumans() {
