@@ -34,4 +34,5 @@ public class Humano {
     public void coordenadaHorizontal(int y) {
         this.y = y;
     }
+    
 }
