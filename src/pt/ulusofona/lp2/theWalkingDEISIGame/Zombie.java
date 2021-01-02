@@ -21,6 +21,8 @@ public abstract class Zombie extends Creature {
     }
 
 
-
+    public String getNomeEquipa(){
+        return "Os Outros";
+    }
 
 }

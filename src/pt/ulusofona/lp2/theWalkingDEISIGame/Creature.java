@@ -51,7 +51,7 @@ public abstract class Creature {
     }
 
 
-    public abstract boolean comportamentos(int xD, int yD, boolean diaNoite);
+    public abstract boolean comportamentos(int xD, int yD, boolean diaNoite,boolean safeHaven);
 
     public String salvo() {
         if (passouSafeHaven == true) {
@@ -64,4 +64,7 @@ public abstract class Creature {
         }
 
     }
+
+
+    public abstract  String getNomeEquipa();
 }

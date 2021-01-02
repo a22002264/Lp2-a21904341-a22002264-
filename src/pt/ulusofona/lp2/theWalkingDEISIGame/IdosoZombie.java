@@ -13,8 +13,11 @@ public class IdosoZombie extends Zombie{
         return id + " | " + "Idoso (Zombie)" + " | " + "Os Outros" + " | " + nome + " " + totalEquipDestrui +  " @ " + salvo();
     }
     @Override
-    public boolean comportamentos(int xD, int yD, boolean diaNoite) {
+    public boolean comportamentos(int xD, int yD, boolean diaNoite, boolean safeHaven) {
+        if (safeHaven == true) {
+            return false;
 
+        }
         if (Math.abs((xD - x)) > deslocamento) {
             return false;
         }

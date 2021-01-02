@@ -196,14 +196,14 @@ public class TWDGameManager {
         return inicialTeam;
     }
 
-   /* public List<Humano> getHumans() {
-        return humanos;
-    }
+    /* public List<Humano> getHumans() {
+         return humanos;
+     }
 
-    public List<Zombie> getZombies() {
-        return zombies;
-    }
-*/
+     public List<Zombie> getZombies() {
+         return zombies;
+     }
+ */
     public List<Creature> getCreatures() {
         return criaturas;
     }
@@ -215,14 +215,40 @@ public class TWDGameManager {
         if (!(validaEquipaAtual(xO, yO))) {
             return false;
         }
-        if (verificarCriaturaDestino(xD, yD)) {
+        if (validaSobreposicao(xO, yO, xD, yD)) {
             return false;
         }
-        Equipamento equip = buscarEquipamento(xD, yD);
+        Creature cOrigem = getCreature(xO, yO);
+        Creature cDestino = getCreature(xD, yD);
+        boolean isSafeHaven = getSafeHaven(xD, yD) != null;
 
-        if (equip == null) {
-            mudarPosicaoCriatura(xO, yO, xD, yD);
-        } else {
+        if (!(cOrigem.comportamentos(xD, yD, isDay, isSafeHaven))) {
+            return false;
+        }
+        if (equipaAtual == 0) {
+            if (cDestino != null && cDestino.getNomeEquipa().equals("Os Vivos")) {
+                return false;
+            }
+        }
+        if (equipaAtual == 1) {
+            if (cDestino != null && cDestino.getNomeEquipa().equals("Os Outros")) {
+                return false;
+            }
+            if (cDestino instanceof Cao) {
+                return false;
+            }
+
+        }
+
+
+        Equipamento equip = buscarEquipamento(xD, yD);
+        if (isSafeHaven == true) {
+            //Casa destino= safe house
+            //já sei que é humano(só aqui dentro)
+            //As que faltam fazer validações:
+            // Caso um “Vivo” se mova para uma casa que seja um Safe Haven, deve sair do jogo
+        } else if (equip != null) {
+            //Casa destino= equipamento
             if (equipaAtual == 0) {
                 //equipa humano
                 Humano humano = getHumano(xO, yO);
@@ -238,13 +264,52 @@ public class TWDGameManager {
                 Zombie morto = getZombie(xO, yO);
                 morto.toolsDestroy++;
             }
-            mudarPosicaoCriatura(xO, yO, xD, yD);
+
+        } else if (cDestino != null) {
+            //Casa destino= criatura
+
+
+//As que faltam fazer validações:
+
+            //Um “Vivo” apenas se pode mover para uma casa onde esteja um Zombie se tiver um equipamento ofensivo que possa ser usado contra esse Zombie
+
         }
+        mudarPosicaoCriatura(xO, yO, xD, yD);
+
         mudarEquipaAtual();
         mudarDiaNoite();
         turno++;
         return true;
     }
+
+
+    private boolean validaSobreposicao(int xO, int yO, int xD, int yD) {
+
+
+        for (int i = 0; i < criaturas.size(); i++) {
+            if (yO == yD && criaturas.get(i).x > xO && criaturas.get(i).x < xD) {
+                return true;
+            }
+            if (xO == xD && criaturas.get(i).y > yO && criaturas.get(i).y < yD) {
+                return true;
+            }
+
+            if (xO == yO && xD == yD) {
+                int xAux = criaturas.get(i).x;
+                int yAux = criaturas.get(i).y;
+
+                if (xAux == yAux && (xAux > xO && xAux < xD || yAux > yO && yAux < yD)) {
+
+                    return true;
+                }
+            }
+
+        }
+
+
+        return false;
+    }
+
 
     private void mudarDiaNoite() {
         --diasDiaNoite;
@@ -254,27 +319,25 @@ public class TWDGameManager {
         }
     }
 
-    private Humano getHumano(int xO, int yO) {
-        /*
-        for (int b = 0; b < humanos.size(); b++) {
-            if (humanos.get(b).x == xO && humanos.get(b).y == yO) {
-                return humanos.get(b);
+    private SafeHaven getSafeHaven(int xD, int yD) {
+
+        for (int b = 0; b < houses.size(); b++) {
+            if (houses.get(b).getX() == xD && houses.get(b).getY() == yD) {
+                return houses.get(b);
             }
         }
-
-         */
         return null;
     }
 
-    private Zombie getZombie(int xO, int yO) {
-        /*
-        for (int b = 0; b < zombies.size(); b++) {
-            if (zombies.get(b).x == xO && zombies.get(b).y == yO) {
-                return zombies.get(b);
+    private Creature getCreature(int xO, int yO) {
+
+        for (int b = 0; b < criaturas.size(); b++) {
+            if (criaturas.get(b).x == xO && criaturas.get(b).y == yO) {
+                return criaturas.get(b);
             }
         }
 
-         */
+
         return null;
     }
 
@@ -288,12 +351,11 @@ public class TWDGameManager {
     }
 
     private boolean validaEquipaAtual(int xO, int yO) {
-        Humano h = getHumano(xO, yO);
-        Zombie z = getZombie(xO, yO);
-        if (equipaAtual == 0 && h == null) {
+        Creature c = getCreature(xO, yO);
+        if (equipaAtual == 0 && c.getNomeEquipa().equals("Os Outros")) {
             return false;
         }
-        if (equipaAtual == 1 && z == null) {
+        if (equipaAtual == 1 && c.getNomeEquipa().equals("Os Vivos")) {
             return false;
         }
         return true;
@@ -319,16 +381,6 @@ public class TWDGameManager {
         }
     }
 
-
-    private boolean verificarCriaturaDestino(int xD, int yD) {
-        for (int c = 0; c < criaturas.size(); c++) {
-            if (criaturas.get(c).x == xD && criaturas.get(c).y == yD) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void mudarEquipaAtual() {
         if (equipaAtual == 0) {
             equipaAtual = 1;
@@ -347,7 +399,7 @@ public class TWDGameManager {
         if ((yD > numeroColunas) || yO > (numeroColunas)) {
             return false;
         }
-        if (xO != xD && yO != yD) {
+      /*  if (xO != xD && yO != yD) {
             return false;
         }
         if (Math.abs((xD - xO)) != 1 && Math.abs((xD - xO)) != 0) {
@@ -356,6 +408,8 @@ public class TWDGameManager {
         if (Math.abs((yD - yO)) != 1 && Math.abs((yD - yO)) != 0) {
             return false;
         }
+        podem andar na diagonal
+       */
         return true;
     }
 

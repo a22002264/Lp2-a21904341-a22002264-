@@ -18,7 +18,7 @@ public class AdultoVivo extends Humano {
     }
 
     @Override
-    public boolean comportamentos(int xD, int yD, boolean diaNoite) {
+    public boolean comportamentos(int xD, int yD, boolean diaNoite,boolean safeHaven) {
 
         if (Math.abs((xD - x)) > deslocamento) {
             return false;

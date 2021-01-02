@@ -33,4 +33,8 @@ public abstract class Humano extends Creature {
     public void setEquipamento(Equipamento equipamento) {
         this.equipamento = equipamento;
     }
+
+    public String getNomeEquipa(){
+        return "Os Vivos";
+    }
 }

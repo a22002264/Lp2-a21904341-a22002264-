@@ -13,7 +13,7 @@ public class CriancaVivo extends Humano {
         return id + " | " + "Criança (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados +  " @ " + salvo();
     }
     @Override
-    public boolean comportamentos(int xD, int yD, boolean diaNoite) {
+    public boolean comportamentos(int xD, int yD, boolean diaNoite, boolean safeHaven) {
 
         if (Math.abs((xD - x)) > deslocamento) {
             return false;
