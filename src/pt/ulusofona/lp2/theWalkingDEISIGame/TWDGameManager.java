@@ -331,7 +331,6 @@ public class TWDGameManager {
         }
         return null;
     }
-
     private Creature getCreature(int xO, int yO) {
 
         for (int b = 0; b < humanos.size(); b++) {
