@@ -347,7 +347,6 @@ public class TWDGameManager {
         }
         return null;
     }
-
     private void largarEquipamento(int xO, int yO, Equipamento novoEquipamento, Humano humano) {
         Equipamento equipamentoAntigo = humano.getEquipamento();
         equipamentoAntigo.coordenadaVertical(xO);
