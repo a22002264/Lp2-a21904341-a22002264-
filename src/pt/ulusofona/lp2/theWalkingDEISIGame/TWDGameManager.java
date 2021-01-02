@@ -14,18 +14,18 @@ public class TWDGameManager {
     int numeroColunas;
     int numeroLinhas;
     int equipaAtual;
-    //ArrayList<Zombie> zombies;
-    //ArrayList<Humano> humanos;
+    ArrayList<Zombie> zombies;
+    ArrayList<Humano> humanos;
     ArrayList<Equipamento> equipamentos;
-    ArrayList<Creature> criaturas;
+    //ArrayList<Creature> criaturas;
     ArrayList<SafeHaven> houses;
 
     public TWDGameManager() {
-        //  this.humanos = new ArrayList<>();
-        this.criaturas = new ArrayList<>();
+        this.humanos = new ArrayList<>();
+        //this.criaturas = new ArrayList<>();
         this.equipamentos = new ArrayList<>();
         this.houses = new ArrayList<>();
-        // this.zombies = new ArrayList<>();
+        this.zombies = new ArrayList<>();
     }
 
     public boolean startGame(File ficheiroInicial) {
@@ -62,34 +62,34 @@ public class TWDGameManager {
                         int y = Integer.parseInt(dados1[4]);
                         if (idTipo == 0) {
                             Zombie z = new CriancaZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z);
+                            zombies.add(z);
                         } else if (idTipo == 1) {
                             Zombie z1 = new AdultoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z1);
+                            zombies.add(z1);
                         } else if (idTipo == 2) {
                             Zombie z2 = new MilitarZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z2);
+                            zombies.add(z2);
                         } else if (idTipo == 3) {
                             Zombie z3 = new IdosoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z3);
+                            zombies.add(z3);
                         } else if (idTipo == 4) {
                             Zombie z4 = new ZombieVampiro(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z4);
+                            zombies.add(z4);
                         } else if (idTipo == 5) {
                             Humano a = new CriancaVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a);
+                            humanos.add(a);
                         } else if (idTipo == 6) {
                             Humano a1 = new AdultoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a1);
+                            humanos.add(a1);
                         } else if (idTipo == 7) {
                             Humano a2 = new MilitarVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a2);
+                            humanos.add(a2);
                         } else if (idTipo == 8) {
                             Humano a3 = new IdosoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a3);
+                            humanos.add(a3);
                         } else if (idTipo == 9) {
                             Humano a4 = new Cao(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a4);
+                            humanos.add(a4);
                         }
 
 
@@ -170,7 +170,6 @@ public class TWDGameManager {
     }
 
     private void verficarSeHumanoTemEquip() {
-        /*
         ArrayList<Equipamento> paraRemover = new ArrayList<>();
         for (Equipamento equip : equipamentos) {
             for (Humano h : humanos) {
@@ -181,8 +180,6 @@ public class TWDGameManager {
             }
         }
         equipamentos.removeAll(paraRemover);
-        */
-
     }
 
     public int[] getWorldSize() {
@@ -205,7 +202,11 @@ public class TWDGameManager {
      }
  */
     public List<Creature> getCreatures() {
-        return criaturas;
+        ArrayList<Creature> creatures = new ArrayList<>();
+        creatures.addAll(humanos);
+        creatures.addAll(zombies);
+
+        return creatures;
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
@@ -284,7 +285,9 @@ public class TWDGameManager {
 
 
     private boolean validaSobreposicao(int xO, int yO, int xD, int yD) {
-
+        ArrayList<Creature> criaturas = new ArrayList<>();
+        criaturas.addAll(humanos);
+        criaturas.addAll(zombies);
 
         for (int i = 0; i < criaturas.size(); i++) {
             if (yO == yD && criaturas.get(i).x > xO && criaturas.get(i).x < xD) {
@@ -331,13 +334,17 @@ public class TWDGameManager {
 
     private Creature getCreature(int xO, int yO) {
 
-        for (int b = 0; b < criaturas.size(); b++) {
-            if (criaturas.get(b).x == xO && criaturas.get(b).y == yO) {
-                return criaturas.get(b);
+        for (int b = 0; b < humanos.size(); b++) {
+            if (humanos.get(b).x == xO && humanos.get(b).y == yO) {
+                return humanos.get(b);
             }
         }
 
-
+        for (int b = 0; b < zombies.size(); b++) {
+            if (zombies.get(b).x == xO && zombies.get(b).y == yO) {
+                return zombies.get(b);
+            }
+        }
         return null;
     }
 
@@ -371,14 +378,24 @@ public class TWDGameManager {
         equipamentos.remove(index);
     }
 
-    private void mudarPosicaoCriatura(int xO, int yO, int xD, int yD) {
+    private boolean mudarPosicaoCriatura(int xO, int yO, int xD, int yD) {
 
-        for (int a = 0; a < criaturas.size(); a++) {
-            if (criaturas.get(a).x == xO && criaturas.get(a).y == yO) {
-                criaturas.get(a).coordenadaVertical(xD);
-                criaturas.get(a).coordenadaHorizontal(yD);
+        for (Zombie zombie : zombies) {
+            if (zombie.x == xO && zombie.y == yO) {
+                zombie.coordenadaVertical(xD);
+                zombie.coordenadaHorizontal(yD);
+                return true;
             }
         }
+        for (Humano humano : humanos) {
+            if (humano.x == xO && humano.y == yO) {
+                humano.coordenadaVertical(xD);
+                humano.coordenadaHorizontal(yD);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void mudarEquipaAtual() {
@@ -438,9 +455,15 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
-        for (Creature c : this.criaturas) {
-            if (c.x == x && c.y == y) {
-                return c.id;
+        for (Zombie z : this.zombies) {
+            if (z.x == x && z.y == y) {
+                return z.id;
+            }
+        }
+
+        for (Humano h : this.humanos) {
+            if (h.x == x && h.y == y) {
+                return h.id;
             }
         }
 
@@ -463,7 +486,6 @@ public class TWDGameManager {
     }
 
     public boolean isDoorToSafeHaven(int x, int y) {
-
 
         for (int i = 0; i < houses.size(); i++) {
             if (houses.get(i).getX() == x && houses.get(i).getY() == y) {
@@ -489,6 +511,10 @@ public class TWDGameManager {
 
 
     public List<Integer> getIdsInSaveHaven() {
+        ArrayList<Creature> criaturas = new ArrayList<>();
+        criaturas.addAll(humanos);
+        criaturas.addAll(zombies);
+
         ArrayList<Integer> ids = new ArrayList<>();
         for (int i = 0; i < criaturas.size(); i++) {
             if (criaturas.get(i).passouSafeHaven == true) {
@@ -498,5 +524,21 @@ public class TWDGameManager {
         return ids;
     }
 
+    private Humano getHumano(int x, int y) {
+        for (Humano h : humanos) {
+            if (h.x == x && h.y == y) {
+                return h;
+            }
+        }
+        return null;
+    }
 
+    private Zombie getZombie(int x, int y) {
+        for (Zombie z : zombies) {
+            if (z.x == x && z.y == y) {
+                return z;
+            }
+        }
+        return null;
+    }
 }
