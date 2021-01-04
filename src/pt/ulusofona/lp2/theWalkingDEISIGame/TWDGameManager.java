@@ -422,6 +422,12 @@ public class TWDGameManager {
                             turnosSemTransformacao++;
                         } else {
                             ((Humano) cDestino).transformar();
+                            if( ((Humano) cDestino).getEquipamento() != null){
+                                Equipamento equipamento = ((Humano) cDestino).getEquipamento();
+                                equipamento.coordenadaHorizontal(-1);
+                                equipamento.coordenadaVertical(-1);
+                                ((Humano) cDestino).setEquipamento(null);
+                            }
                             mudarPosicaoCriatura(xO, yO, xO, yO);
                             turnosSemTransformacao = 0;
                         }
