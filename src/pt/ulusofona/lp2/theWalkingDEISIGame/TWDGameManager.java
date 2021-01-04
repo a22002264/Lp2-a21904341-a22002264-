@@ -692,7 +692,7 @@ public class TWDGameManager {
     }
 
 
-    public List<Integer> getIdsInSaveHaven() {
+    public List<Integer>getIdsInSafeHaven(){
         ArrayList<Integer> ids = new ArrayList<>();
         for (Creature criatura : criaturas){
             if (criatura.passouSafeHaven){
