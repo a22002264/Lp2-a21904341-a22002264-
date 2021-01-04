@@ -2,7 +2,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class Veneno extends Equipamento {
     private boolean usado;
-    private int turnoAtivo = -1;
+    private int turnoAtivo = 0;
     int maxTurno = 3;
 
     public boolean getUsado(){

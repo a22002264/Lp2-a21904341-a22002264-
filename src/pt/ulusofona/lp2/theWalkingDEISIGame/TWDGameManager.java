@@ -793,23 +793,21 @@ public class TWDGameManager {
     public boolean saveGame(File fich) {
         try {
             FileWriter ficheiro = new FileWriter(fich);
-            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
-            ficheiro.write(equipaAtual + '\n');
-            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
-            ficheiro.write(criaturas.size() + '\n');
-            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
-            for (Creature criatura : criaturas) {
+            ficheiro.write( numeroLinhas + " " + numeroColunas + '\n');
+            ficheiro.write( equipaAtual + '\n');
+            ficheiro.write( criaturas.size() + '\n');
+            for (Creature criatura : criaturas){
                 String linha = criatura.id + " : " + criatura.idTipo + " : " + criatura.nome + " : ";
-                ficheiro.write(linha + criatura.x + " : " + criatura.y + '\n');
+                ficheiro.write(linha + criatura.x + " : " + criatura.y +'\n');
             }
             ficheiro.write(equipamentos.size() + '\n');
-            for (Equipamento equip : equipamentos) {
+            for (Equipamento equip : equipamentos){
                 String linha = equip.id + " : " + equip.idTipo + " : ";
-                ficheiro.write(linha + equip.x + " : " + equip.y + '\n');
+                ficheiro.write(linha + equip.x + " : " + equip.y +'\n');
             }
             ficheiro.write(houses.size() + '\n');
-            for (SafeHaven safe : houses) {
-                ficheiro.write(safe.getX() + " : " + safe.getY() + '\n');
+            for (SafeHaven safe : houses){
+                ficheiro.write(safe.getX() + " : " + safe.getY() +'\n');
             }
 
             ficheiro.close();
