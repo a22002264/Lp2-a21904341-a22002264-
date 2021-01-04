@@ -260,10 +260,7 @@ public class TWDGameManager {
             }
             turnosSemTransformacao++;
         } else if (equip != null) {
-            //Casa destino= equipamento
             if (equipaAtual == 10) {
-                //equipa humano
-                Humano humano;
                 for (Creature vivo : criaturas) {
                     if ((vivo.getTipo() >= 5 && vivo.getTipo() <= 9) && !(((Humano) vivo).transformado)) {
                         if (vivo.x == xO && vivo.y == yO) {
@@ -281,14 +278,39 @@ public class TWDGameManager {
                                         ((Veneno) equip).usar();
                                         ((Humano) vivo).envenenar();
                                     }
-                                    if (vivo.getTipo() == 7 && equip.getIdTipo() == 0 && !(((EscudoDeMadeira) equip).usoMilitar)) {
+                                    if (vivo.getTipo() == 7 && equip.getIdTipo() == 0 &&
+                                            !(((EscudoDeMadeira) equip).usoMilitar)) {
                                         ((EscudoDeMadeira) equip).setDurabilidadeMilitar();
                                     }
                                     mudarPosicaoCriatura(xO, yO, xD, yD);
                                     turnosSemTransformacao++;
+                                }else{
+                                    return  false;
                                 }
                             } else {
-                                largarEquipamento(xO, yO, equip, ((Humano) vivo));
+                                if (equip.getIdTipo() != 9 && !(((Humano)vivo).getEnvenenado())) {
+                                    ((Humano)vivo).setUsados(((Humano)vivo).getUsados() + 1);
+                                    equip.coordenadaVertical(-1);
+                                    equip.coordenadaHorizontal(-1);
+                                    Equipamento equipamentoAntigo = ((Humano)vivo).getEquipamento();
+                                    equipamentoAntigo.coordenadaVertical(xO);
+                                    equipamentoAntigo.coordenadaHorizontal(yO);
+                                    ((Humano)vivo).setEquipamento(equip);
+                                    if (equip.getIdTipo() == 9 && ((Humano)vivo).envenenado) {
+                                        ((Antidoto) equip).usar();
+                                        ((Humano)vivo).curar();
+                                    }
+                                    if (equip.getIdTipo() == 8) {
+                                        ((Veneno) equip).usar();
+                                        ((Humano)vivo).envenenar();
+                                    }
+                                    if (vivo.getTipo() == 7 && equip.getIdTipo() == 0 &&
+                                            !(((EscudoDeMadeira) equip).usoMilitar)) {
+                                        ((EscudoDeMadeira) equip).setDurabilidadeMilitar();
+                                    }
+                                }else{
+                                    return false;
+                                }
                                 mudarPosicaoCriatura(xO, yO, xD, yD);
                                 turnosSemTransformacao++;
                             }
