@@ -3,7 +3,7 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 public class GarrafaDeLixivia extends Equipamento {
     private double litros = 1.0;
     boolean inutil = false;
-    private int usos=0;
+    private int usos=3;
 
     public int getUsos(){
         return usos;
@@ -14,7 +14,7 @@ public class GarrafaDeLixivia extends Equipamento {
             inutil = true;
         } else {
             litros = litros - 0.3;
-            usos++;
+            usos--;
         }
     }
 
