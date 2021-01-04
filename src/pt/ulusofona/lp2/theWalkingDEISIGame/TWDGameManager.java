@@ -724,7 +724,7 @@ public class TWDGameManager {
             return aux.nome + " | " + ((PistolaWaltherPPK)aux).getBalas();
         }
         if(aux.idTipo == 7){
-            return aux.nome + " | " + ((GarrafaDeLixivia)aux).getLitros();
+            return aux.nome + " | " + ((GarrafaDeLixivia)aux).getUsos();
         }
         if(aux.idTipo == 8){
             if (((Veneno)aux).getUsado()){
