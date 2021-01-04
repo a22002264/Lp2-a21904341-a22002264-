@@ -10,11 +10,11 @@ public class AdultoVivo extends Humano {
     }
     @Override
     public String toString() {
-
-
-
-
-        return id + " | " + "Adulto (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ " + salvo();
+        if (transformado){
+            return id + " | " + "Adulto (Zombie)" + " | " + "Os Outros" + " | " + nome + " "+toolsDestroy+" @ "+salvo();
+        }else{
+            return id + " | " + "Adulto (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ " + salvo();
+        }
     }
 
     @Override

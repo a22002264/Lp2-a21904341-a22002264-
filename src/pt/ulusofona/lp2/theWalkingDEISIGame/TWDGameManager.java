@@ -17,18 +17,15 @@ public class TWDGameManager {
     int numeroLinhas;
     int equipaAtual;
     int turnosSemTransformacao;
-    //ArrayList<Zombie> zombies;
-    //ArrayList<Humano> humanos;
     ArrayList<Equipamento> equipamentos;
     ArrayList<Creature> criaturas;
     ArrayList<SafeHaven> houses;
 
     public TWDGameManager() {
-        // this.humanos = new ArrayList<>();
         this.criaturas = new ArrayList<>();
         this.equipamentos = new ArrayList<>();
         this.houses = new ArrayList<>();
-        //this.zombies = new ArrayList<>();
+
     }
 
     public boolean startGame(File ficheiroInicial) {
@@ -109,37 +106,48 @@ public class TWDGameManager {
                     int y = Integer.parseInt(dados1[3]);
 
                     if (idTipo == 0) {
-                        Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo, x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
+                        Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
+                                , x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 1) {
-                        Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo, x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
+                        Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
                         equipamentos.add(e);
                     } else if (idTipo == 2) {
-                        Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo, x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
+                        Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
                         equipamentos.add(e);
                     } else if (idTipo == 3) {
-                        Equipamento e = new EscudoTactico(idEquipamento, idTipo, x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
+                        Equipamento e = new EscudoTactico(idEquipamento, idTipo
+                                , x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
                         equipamentos.add(e);
                     } else if (idTipo == 4) {
-                        Equipamento e = new RevistaMaria(idEquipamento, idTipo, x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
+                        Equipamento e = new RevistaMaria(idEquipamento, idTipo
+                                , x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
                         equipamentos.add(e);
                     } else if (idTipo == 5) {
-                        Equipamento e = new CabecadeAlho(idEquipamento, idTipo, x, y, "Defensivo", "garlic.png","Cabeça de Alho");
+                        Equipamento e = new CabecadeAlho(idEquipamento, idTipo
+                                , x, y, "Defensivo", "garlic.png","Cabeça de Alho");
                         equipamentos.add(e);
                     } else if (idTipo == 6) {
-                        Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo, x, y, "Ofensivo", "steak.png","Estaca de Madeira");
+                        Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "steak.png","Estaca de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 7) {
-                        Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo, x, y, "Defensivo", "bleach.png","Garrafa de Lixívia (1 litro)");
+                        Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
+                                ,x, y,"Defensivo","bleach.png","Garrafa de Lixívia (1 litro)");
                         equipamentos.add(e);
                     } else if (idTipo == 8) {
-                        Equipamento e = new Veneno(idEquipamento, idTipo, x, y, "Defensivo", "poison.png","Veneno");
+                        Equipamento e = new Veneno(idEquipamento, idTipo
+                                , x, y, "Defensivo", "poison.png","Veneno");
                         equipamentos.add(e);
                     } else if (idTipo == 9) {
-                        Equipamento e = new Antidoto(idEquipamento, idTipo, x, y, "Defensivo", "antidote.png","Antídoto");
+                        Equipamento e = new Antidoto(idEquipamento, idTipo
+                                , x, y, "Defensivo", "antidote.png","Antídoto");
                         equipamentos.add(e);
                     } else if (idTipo == 10) {
-                        Equipamento e = new BeskarHelmet(idEquipamento, idTipo, x, y, "Defensivo/Ofensivo", "beskar_helmet.png","Beskar Helmet");
+                        Equipamento e = new BeskarHelmet(idEquipamento,idTipo
+                                ,x, y,"Defensivo/Ofensivo","beskar_helmet.png","Beskar Helmet");
                         equipamentos.add(e);
                     }
                     numeroDaLinha++;
@@ -238,9 +246,9 @@ public class TWDGameManager {
             }
             turnosSemTransformacao++;
         } else if (equip != null) {
-            //Casa destino= equipamento
+
             if (equipaAtual == 10) {
-                //equipa humano
+
                 Humano humano;
                 for (Creature vivo : criaturas){
                     if((vivo.getTipo() >= 5 && vivo.getTipo() <= 9) && !(((Humano)vivo).transformado) ){
@@ -291,7 +299,6 @@ public class TWDGameManager {
             }
 
         } else if (cDestino != null) {
-            //Casa destino= criatura
             if((cOrigem.getTipo() >= 5 && cOrigem.getTipo() <= 9) && !(((Humano)cOrigem).transformado)){
                 if(cOrigem.getTipo() == 5 && ((Humano)cOrigem).getEquipamento() != null){
                     Equipamento arma = ((Humano)cOrigem).getEquipamento();
@@ -343,7 +350,7 @@ public class TWDGameManager {
             }
             if((cOrigem.getTipo() >= 0 && cOrigem.getTipo() <= 4) || ((Humano)cOrigem).transformado) {
                 if (!(((Humano) cDestino).transformado)) {
-                    if (cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 && ((Humano) cDestino).getEquipamento() != null) {
+                    if(cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 &&((Humano) cDestino).getEquipamento()!= null){
                         Equipamento defesa = ((Humano) cDestino).getEquipamento();
                         if (defesa.getIdTipo() == 0 && ((EscudoDeMadeira) defesa).getDurabilidade() != 0) {
                             ((EscudoDeMadeira) defesa).tirarDurabilidade();
@@ -428,9 +435,7 @@ public class TWDGameManager {
                     return true;
                 }
             }
-
         }
-
 
         return false;
     }
@@ -517,7 +522,7 @@ public class TWDGameManager {
         }
         return false;
     }
-    //
+
     private void mudarEquipaAtual() {
         if (equipaAtual == 10) {
             equipaAtual = 20;
@@ -536,17 +541,7 @@ public class TWDGameManager {
         if ((yD > numeroColunas) || yO > (numeroColunas)) {
             return false;
         }
-      /*  if (xO != xD && yO != yD) {
-            return false;
-        }
-        if (Math.abs((xD - xO)) != 1 && Math.abs((xD - xO)) != 0) {
-            return false;
-        }
-        if (Math.abs((yD - yO)) != 1 && Math.abs((yD - yO)) != 0) {
-            return false;
-        }
-        podem andar na diagonal
-       */
+
         return true;
     }
 
@@ -807,28 +802,36 @@ public class TWDGameManager {
                         int x = Integer.parseInt(dados1[3]);
                         int y = Integer.parseInt(dados1[4]);
                         if (idTipo == 0) {
-                            Zombie z = new CriancaZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z = new CriancaZombie(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z);
                         } else if (idTipo == 1) {
-                            Zombie z1 = new AdultoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z1 = new AdultoZombie(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z1);
                         } else if (idTipo == 2) {
-                            Zombie z2 = new MilitarZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z2 = new MilitarZombie(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z2);
                         } else if (idTipo == 3) {
-                            Zombie z3 = new IdosoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z3 = new IdosoZombie(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z3);
                         } else if (idTipo == 4) {
-                            Zombie z4 = new ZombieVampiro(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z4 = new ZombieVampiro(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z4);
                         } else if (idTipo == 5) {
-                            Humano a = new CriancaVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a = new CriancaVivo(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "human.png");
                             criaturas.add(a);
                         } else if (idTipo == 6) {
-                            Humano a1 = new AdultoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a1 = new AdultoVivo(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "human.png");
                             criaturas.add(a1);
                         } else if (idTipo == 7) {
-                            Humano a2 = new MilitarVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a2 = new MilitarVivo(idCriatura, idTipo
+                                    , nomeCriatura, x, y, "human.png");
                             criaturas.add(a2);
                         } else if (idTipo == 8) {
                             Humano a3 = new IdosoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
@@ -855,37 +858,48 @@ public class TWDGameManager {
 
 
                     if (idTipo == 0) {
-                        Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo, x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
+                        Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
+                                , x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 1) {
-                        Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo, x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
+                        Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
                         equipamentos.add(e);
                     } else if (idTipo == 2) {
-                        Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo, x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
+                        Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
                         equipamentos.add(e);
                     } else if (idTipo == 3) {
-                        Equipamento e = new EscudoTactico(idEquipamento, idTipo, x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
+                        Equipamento e = new EscudoTactico(idEquipamento, idTipo
+                                , x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
                         equipamentos.add(e);
                     } else if (idTipo == 4) {
-                        Equipamento e = new RevistaMaria(idEquipamento, idTipo, x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
+                        Equipamento e = new RevistaMaria(idEquipamento, idTipo
+                                , x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
                         equipamentos.add(e);
                     } else if (idTipo == 5) {
-                        Equipamento e = new CabecadeAlho(idEquipamento, idTipo, x, y, "Defensivo", "garlic.png","Cabeça de Alho");
+                        Equipamento e = new CabecadeAlho(idEquipamento, idTipo
+                                , x, y, "Defensivo", "garlic.png","Cabeça de Alho");
                         equipamentos.add(e);
                     } else if (idTipo == 6) {
-                        Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo, x, y, "Ofensivo", "steak.png","Estaca de Madeira");
+                        Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
+                                , x, y, "Ofensivo", "steak.png","Estaca de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 7) {
-                        Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo, x, y, "Defensivo", "bleach.png","Garrafa de Lixívia (1 litro)");
+                        Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
+                                ,x,y, "Defensivo","bleach.png","Garrafa de Lixívia (1 litro)");
                         equipamentos.add(e);
                     } else if (idTipo == 8) {
-                        Equipamento e = new Veneno(idEquipamento, idTipo, x, y, "Defensivo", "poison.png","Veneno");
+                        Equipamento e = new Veneno(idEquipamento, idTipo
+                                , x, y, "Defensivo", "poison.png","Veneno");
                         equipamentos.add(e);
                     } else if (idTipo == 9) {
-                        Equipamento e = new Antidoto(idEquipamento, idTipo, x, y, "Defensivo", "antidote.png","Antídoto");
+                        Equipamento e = new Antidoto(idEquipamento, idTipo
+                                , x, y, "Defensivo", "antidote.png","Antídoto");
                         equipamentos.add(e);
                     } else if (idTipo == 10) {
-                        Equipamento e = new BeskarHelmet(idEquipamento, idTipo, x, y, "Defensivo/Ofensivo", "beskar_helmet.png","Beskar Helmet");
+                        Equipamento e = new BeskarHelmet(idEquipamento, idTipo
+                                ,x,y,"Defensivo/Ofensivo","beskar_helmet.png","Beskar Helmet");
                         equipamentos.add(e);
                     }
                     numeroDaLinha++;

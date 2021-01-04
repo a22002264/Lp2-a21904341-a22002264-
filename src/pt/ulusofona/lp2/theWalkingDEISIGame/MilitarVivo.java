@@ -11,7 +11,11 @@ public class MilitarVivo extends Humano {
 
     @Override
     public String toString() {
-        return id + " | " + "Militar (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ " + salvo();
+        if (transformado){
+            return id + " | " + "Militar (Zombie)" + " | " + "Os Outros" + " | " + nome + " "+toolsDestroy+" @ "+salvo();
+        }else{
+            return id + " | " + "Militar (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ " + salvo();
+        }
     }
 
     @Override

@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public class CriancaVivo extends Humano {
-    int deslocamento = 1;
+    int deslocamento = 2;
     String turno = "Todos";
 
 
@@ -10,10 +10,15 @@ public class CriancaVivo extends Humano {
     }
     @Override
     public String toString() {
-        return id + " | " + "Criança (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados +  " @ " + salvo();
+        if (transformado){
+            return id + " | " + "Criança (Zombie)" + " | " + "Os Outros" + " | " + nome + " "+toolsDestroy+" @ "+salvo();
+        }else{
+            return id + " | " + "Criança (Vivo)" + " | " + "Os Vivos" + " | " + nome + " " + usados + " @ " + salvo();
+        }
     }
+
     @Override
-    public boolean comportamentos(int xD, int yD, boolean diaNoite, boolean safeHaven) {
+    public boolean comportamentos(int xD, int yD, boolean diaNoite,boolean safeHaven) {
 
         if (Math.abs((xD - x)) > deslocamento) {
             return false;
@@ -22,11 +27,9 @@ public class CriancaVivo extends Humano {
             return false;
         }
 
-        if (x != xD && y != yD) {
-            return false;
-        }
-
 
         return true;
     }
+
+
 }
