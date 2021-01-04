@@ -694,9 +694,9 @@ public class TWDGameManager {
 
     public List<Integer> getIdsInSaveHaven() {
         ArrayList<Integer> ids = new ArrayList<>();
-        for (int i = 0; i < criaturas.size(); i++) {
-            if (criaturas.get(i).passouSafeHaven) {
-                ids.add(criaturas.get(i).id);
+        for (Creature criatura : criaturas){
+            if (criatura.passouSafeHaven){
+                ids.add(criatura.getId());
             }
         }
         return ids;
