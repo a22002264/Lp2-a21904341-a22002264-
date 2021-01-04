@@ -431,6 +431,10 @@ public class TWDGameManager {
                             mudarPosicaoCriatura(xO, yO, xO, yO);
                             turnosSemTransformacao = 0;
                         }
+                    }else{
+                        ((Humano) cDestino).transformar();
+                        mudarPosicaoCriatura(xO, yO, xO, yO);
+                        turnosSemTransformacao = 0;
                     }
                 } else {
                     return false;
