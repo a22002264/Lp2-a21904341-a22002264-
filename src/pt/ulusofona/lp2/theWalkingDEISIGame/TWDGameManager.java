@@ -503,10 +503,9 @@ public class TWDGameManager {
     }
 
     private SafeHaven getSafeHaven(int xD, int yD) {
-
-        for (int b = 0; b < houses.size(); b++) {
-            if (houses.get(b).getX() == xD && houses.get(b).getY() == yD) {
-                return houses.get(b);
+        for (SafeHaven casa : houses) {
+            if (casa.getX() == xD && casa.getY() == yD) {
+                return casa;
             }
         }
         return null;
