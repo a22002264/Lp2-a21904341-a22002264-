@@ -246,9 +246,9 @@ public class TWDGameManager {
             }
             turnosSemTransformacao++;
         } else if (equip != null) {
-
+            //Casa destino= equipamento
             if (equipaAtual == 10) {
-
+                //equipa humano
                 Humano humano;
                 for (Creature vivo : criaturas){
                     if((vivo.getTipo() >= 5 && vivo.getTipo() <= 9) && !(((Humano)vivo).transformado) ){
@@ -259,7 +259,7 @@ public class TWDGameManager {
                                     ((Humano)vivo).setUsados(((Humano)vivo).getUsados() + 1);
                                     equip.coordenadaVertical(-1);
                                     equip.coordenadaHorizontal(-1);
-                                    if(equip.getIdTipo() == 9){
+                                    if(equip.getIdTipo() == 9 && ((Humano)vivo).envenenado){
                                         ((Antidoto)equip).usar();
                                         ((Humano)vivo).curar();
                                     }
@@ -299,6 +299,7 @@ public class TWDGameManager {
             }
 
         } else if (cDestino != null) {
+            //Casa destino= criatura
             if((cOrigem.getTipo() >= 5 && cOrigem.getTipo() <= 9) && !(((Humano)cOrigem).transformado)){
                 if(cOrigem.getTipo() == 5 && ((Humano)cOrigem).getEquipamento() != null){
                     Equipamento arma = ((Humano)cOrigem).getEquipamento();
@@ -350,7 +351,7 @@ public class TWDGameManager {
             }
             if((cOrigem.getTipo() >= 0 && cOrigem.getTipo() <= 4) || ((Humano)cOrigem).transformado) {
                 if (!(((Humano) cDestino).transformado)) {
-                    if(cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 &&((Humano) cDestino).getEquipamento()!= null){
+                    if (cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 && ((Humano) cDestino).getEquipamento() != null) {
                         Equipamento defesa = ((Humano) cDestino).getEquipamento();
                         if (defesa.getIdTipo() == 0 && ((EscudoDeMadeira) defesa).getDurabilidade() != 0) {
                             ((EscudoDeMadeira) defesa).tirarDurabilidade();
@@ -477,7 +478,7 @@ public class TWDGameManager {
             humano.setUsados(humano.getUsados() + 1);
             newEquip.coordenadaVertical(-1);
             newEquip.coordenadaHorizontal(-1);
-            if(newEquip.getIdTipo() == 9){
+            if(newEquip.getIdTipo() == 9 && humano.envenenado){
                 ((Antidoto)newEquip).usar();
                 humano.curar();
             }
@@ -490,7 +491,6 @@ public class TWDGameManager {
             }
         }
     }
-
     private boolean validaEquipaAtual(int xO, int yO) {
         Creature c = getCreature(xO, yO);
         if (equipaAtual == 10 && c.getNomeEquipa().equals("Os Outros")) {
