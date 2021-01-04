@@ -326,7 +326,7 @@ public class TWDGameManager {
                                 z.aumentarToolsDestruidas();
                                 mudarPosicaoCriatura(xO, yO, xD, yD);
                             } else {
-                                mudarPosicaoCriatura(xO, yO, xO, yO);
+                                return false;
                             }
                         }
                     }
