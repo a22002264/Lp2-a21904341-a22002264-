@@ -613,7 +613,7 @@ public class TWDGameManager {
         resultados.add(linha3);
         resultados.add(linha4);
         for (Creature criatura : criaturas){
-            if(criatura.idTipo >= 5  && criatura.idTipo <= 9){
+            if((criatura.idTipo >= 5  && criatura.idTipo <= 9) && !(((Humano)criatura).transformado)){
                 if ((criatura.passouSafeHaven) && (criatura.morta)){
                     resultados.add(criatura.id + " " + criatura.nome);
                 }
@@ -622,8 +622,8 @@ public class TWDGameManager {
         String linha6 = "OS OUTROS";
         resultados.add(linha6);
         for (Creature criatura : criaturas){
-            if(criatura.idTipo >= 0 && criatura.idTipo <= 4){
-                if(criatura.morta){
+            if((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano)criatura).transformado){
+                if(!(criatura.morta)){
                     resultados.add(criatura.id + " " + "(antigamente conhecido como " + criatura.nome + ")");
                 }
             }
@@ -653,7 +653,7 @@ public class TWDGameManager {
         String linha14 = "OS OUTROS";
         resultados.add(linha14);
         for (Creature criatura : criaturas){
-            if(criatura.idTipo >= 0 && criatura.idTipo <= 4){
+            if((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano)criatura).transformado){
                 if(criatura.morta){
                     resultados.add(criatura.id + " " + "(antigamente conhecido como " + criatura.nome + ")");
                 }
