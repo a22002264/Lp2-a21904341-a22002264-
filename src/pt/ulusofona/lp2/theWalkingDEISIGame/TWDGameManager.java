@@ -350,7 +350,7 @@ public class TWDGameManager {
             }
             if((cOrigem.getTipo() >= 0 && cOrigem.getTipo() <= 4) || ((Humano)cOrigem).transformado) {
                 if (!(((Humano) cDestino).transformado)) {
-                    if (cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 && ((Humano) cDestino).getEquipamento() != null) {
+                    if (cDestino.getTipo()>= 5 && cDestino.getTipo() < 9&&((Humano)cDestino).getEquipamento()!= null){
                         Equipamento defesa = ((Humano) cDestino).getEquipamento();
                         if (defesa.getIdTipo() == 0 && ((EscudoDeMadeira) defesa).getDurabilidade() != 0) {
                             ((EscudoDeMadeira) defesa).tirarDurabilidade();
@@ -376,6 +376,13 @@ public class TWDGameManager {
                             }
                         } else if (defesa.getIdTipo() == 8) {
                             mudarPosicaoCriatura(xO, yO, xO, yO);
+                            turnosSemTransformacao++;
+                        }else if(defesa.getIdTipo()==2&&((PistolaWaltherPPK)defesa).getBalas()!=0&&cOrigem.getTipo()!=4){
+
+                            ((PistolaWaltherPPK)defesa).gastarBalas();
+                            cOrigem.matarCriatura();
+                            cOrigem.coordenadaVertical(-1);
+                            cOrigem.coordenadaHorizontal(-1);
                             turnosSemTransformacao++;
                         } else {
                             ((Humano) cDestino).transformar();
