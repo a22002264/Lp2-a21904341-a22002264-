@@ -7,14 +7,18 @@ public class Equipamento {
     protected int y;
     protected String titulo;
     protected String imagemPng;
+    protected String nome;
 
-    public Equipamento(int id, int idTipo, int x, int y, String titulo, String imagemPng) {
+    public Equipamento(){}
+
+    public Equipamento(int id, int idTipo, int x, int y, String titulo, String imagemPng,String nome) {
         this.id = id;
         this.idTipo = idTipo;
         this.x = x;
         this.y = y;
         this.titulo = titulo;
         this.imagemPng = imagemPng;
+        this.nome = nome;
     }
 
     public int getId() {

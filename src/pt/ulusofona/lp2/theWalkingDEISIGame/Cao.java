@@ -4,8 +4,8 @@ public class Cao extends Humano {
 
     int deslocamento = 2;
 
-    public Cao(int idTipo, int id, String nome, int x, int y, String imagemPng) {
-        super(idTipo, id, nome, x, y, imagemPng);
+    public Cao(int id, int idTipo, String nome, int x, int y, String imagemPng) {
+        super(id, idTipo, nome, x, y, imagemPng);
     }
     @Override
     public String toString() {

@@ -5,8 +5,8 @@ public class AdultoVivo extends Humano {
     String turno = "Todos";
 
 
-    public AdultoVivo(int idTipo, int id, String nome, int x, int y, String imagemPng) {
-        super(idTipo, id, nome, x, y, imagemPng);
+    public AdultoVivo(int id, int idTipo, String nome, int x, int y, String imagemPng) {
+        super(id, idTipo, nome, x, y, imagemPng);
     }
     @Override
     public String toString() {

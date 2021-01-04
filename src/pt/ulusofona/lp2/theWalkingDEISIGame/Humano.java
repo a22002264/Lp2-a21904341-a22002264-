@@ -3,8 +3,10 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 public abstract class Humano extends Creature {
     protected int usados;
     protected Equipamento equipamento;
+    protected boolean envenenado = false;
+    protected boolean transformado = false;
 
-    public Humano(int idTipo, int id, String nome, int x, int y, String imagemPng) {
+    public Humano(int id, int idTipo, String nome, int x, int y, String imagemPng) {
         super(idTipo, id, x, y, nome, imagemPng);
 
     }
@@ -14,9 +16,21 @@ public abstract class Humano extends Creature {
         return "human.png";
     }
 
+    public boolean getEnvenenado(){
+        return envenenado;
+    }
 
+    public void envenenar(){
+        envenenado = true;
+    }
 
+    public void curar(){
+        envenenado = false;
+    }
 
+    public void transformar(){
+        transformado = true;
+    }
 
     public int getUsados() {
         return usados;

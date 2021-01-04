@@ -7,8 +7,9 @@ public abstract class Creature {
     protected int y;
     protected String nome;
     protected String imagemPng;
-    protected boolean passouSafeHaven;
-    protected boolean morta;
+    protected boolean passouSafeHaven = false;
+    protected boolean morta = false;
+    protected int toolsDestroy;
 
     public Creature(int idTipo, int id, int x, int y, String nome, String imagemPng) {
         this.x = x;
@@ -24,6 +25,13 @@ public abstract class Creature {
         return passouSafeHaven;
     }
 
+    public int getToolsDestroy(){
+        return toolsDestroy;
+    }
+
+    public void aumentarToolsDestruidas(){
+        toolsDestroy++;
+    }
 
     public void setPassouSafeHaven(boolean passouSafeHaven) {
         this.passouSafeHaven = passouSafeHaven;
@@ -54,10 +62,9 @@ public abstract class Creature {
     public abstract boolean comportamentos(int xD, int yD, boolean diaNoite,boolean safeHaven);
 
     public String salvo() {
-        if (passouSafeHaven == true) {
+        if (passouSafeHaven) {
             return "A salvo";
-
-        } else if (morta == true) {
+        } else if (morta) {
             return "RIP";
         } else {
             return "(" + x + ", " + y + ")";
@@ -65,6 +72,9 @@ public abstract class Creature {
 
     }
 
+    public void matarCriatura(){
+        morta = true;
+    }
 
     public abstract  String getNomeEquipa();
 }

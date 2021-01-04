@@ -4,8 +4,8 @@ public class IdosoVivo extends Humano {
     int deslocamento = 1;
 
 
-    public IdosoVivo(int idTipo, int id, String nome, int x, int y, String imagemPng) {
-        super(idTipo, id, nome, x, y, imagemPng);
+    public IdosoVivo(int id, int idTipo, String nome, int x, int y, String imagemPng) {
+        super(id, idTipo, nome, x, y, imagemPng);
     }
     @Override
     public String toString() {
