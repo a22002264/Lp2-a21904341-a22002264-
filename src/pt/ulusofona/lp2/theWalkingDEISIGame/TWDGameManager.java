@@ -285,7 +285,7 @@ public class TWDGameManager {
                 for (Creature z : criaturas){
                     if((z.getTipo() >= 0 && z.getTipo() <= 4) || ((Humano)z).transformado){
                         if (z.x == xO && z.y == yO){
-                            if (z.getTipo() != 4 || equip.getIdTipo() != 5){
+                            if ((z.getTipo() != 4 || equip.getIdTipo() != 5) && equip.getIdTipo() != 8){
                                 destruirEquipamento(equip.id);
                                 z.aumentarToolsDestruidas();
                                 mudarPosicaoCriatura(xO, yO, xD, yD);
@@ -299,7 +299,6 @@ public class TWDGameManager {
             }
 
         } else if (cDestino != null) {
-            //Casa destino= criatura
             if((cOrigem.getTipo() >= 5 && cOrigem.getTipo() <= 9) && !(((Humano)cOrigem).transformado)){
                 if(cOrigem.getTipo() == 5 && ((Humano)cOrigem).getEquipamento() != null){
                     Equipamento arma = ((Humano)cOrigem).getEquipamento();
