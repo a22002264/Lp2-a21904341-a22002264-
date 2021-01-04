@@ -61,28 +61,28 @@ public class TWDGameManager {
                         int x = Integer.parseInt(dados1[3]);
                         int y = Integer.parseInt(dados1[4]);
                         if (idTipo == 0) {
-                            Zombie z = new CriancaZombie(idCriatura,idTipo, nomeCriatura,x, y, "zombie.png");
+                            Zombie z = new CriancaZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z);
                         } else if (idTipo == 1) {
-                            Zombie z1 = new AdultoZombie(idCriatura,idTipo, nomeCriatura,x, y, "zombie.png");
+                            Zombie z1 = new AdultoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z1);
                         } else if (idTipo == 2) {
-                            Zombie z2 = new MilitarZombie(idCriatura,idTipo,nomeCriatura,x, y, "zombie.png");
+                            Zombie z2 = new MilitarZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z2);
                         } else if (idTipo == 3) {
-                            Zombie z3 = new IdosoZombie(idCriatura,idTipo, nomeCriatura, x, y, "zombie.png");
+                            Zombie z3 = new IdosoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z3);
                         } else if (idTipo == 4) {
-                            Zombie z4 = new ZombieVampiro(idCriatura,idTipo,nomeCriatura,x, y, "zombie.png");
+                            Zombie z4 = new ZombieVampiro(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
                             criaturas.add(z4);
                         } else if (idTipo == 5) {
-                            Humano a = new CriancaVivo(idCriatura,idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a = new CriancaVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
                             criaturas.add(a);
                         } else if (idTipo == 6) {
-                            Humano a1 = new AdultoVivo(idCriatura,idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a1 = new AdultoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
                             criaturas.add(a1);
                         } else if (idTipo == 7) {
-                            Humano a2 = new MilitarVivo(idCriatura,idTipo, nomeCriatura, x, y, "human.png");
+                            Humano a2 = new MilitarVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
                             criaturas.add(a2);
                         } else if (idTipo == 8) {
                             Humano a3 = new IdosoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
@@ -107,47 +107,47 @@ public class TWDGameManager {
 
                     if (idTipo == 0) {
                         Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
-                                , x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
+                                , x, y, "Defensivo", "equipment_0.png", "Escudo de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 1) {
                         Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
+                                , x, y, "Ofensivo", "equipment_1.png", "Espada Hattori Hanzo");
                         equipamentos.add(e);
                     } else if (idTipo == 2) {
                         Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
+                                , x, y, "Ofensivo", "gun.png", "Pistola Walther PPK");
                         equipamentos.add(e);
                     } else if (idTipo == 3) {
                         Equipamento e = new EscudoTactico(idEquipamento, idTipo
-                                , x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
+                                , x, y, "Defensivo", "tactical_shield.png", "Escudo Táctico");
                         equipamentos.add(e);
                     } else if (idTipo == 4) {
                         Equipamento e = new RevistaMaria(idEquipamento, idTipo
-                                , x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
+                                , x, y, "Defensivo", "rolled_magazine.png", "Revista Maria");
                         equipamentos.add(e);
                     } else if (idTipo == 5) {
                         Equipamento e = new CabecadeAlho(idEquipamento, idTipo
-                                , x, y, "Defensivo", "garlic.png","Cabeça de Alho");
+                                , x, y, "Defensivo", "garlic.png", "Cabeça de Alho");
                         equipamentos.add(e);
                     } else if (idTipo == 6) {
                         Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "steak.png","Estaca de Madeira");
+                                , x, y, "Ofensivo", "steak.png", "Estaca de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 7) {
                         Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
-                                ,x, y,"Defensivo","bleach.png","Garrafa de Lixívia (1 litro)");
+                                , x, y, "Defensivo", "bleach.png", "Garrafa de Lixívia (1 litro)");
                         equipamentos.add(e);
                     } else if (idTipo == 8) {
                         Equipamento e = new Veneno(idEquipamento, idTipo
-                                , x, y, "Defensivo", "poison.png","Veneno");
+                                , x, y, "Defensivo", "poison.png", "Veneno");
                         equipamentos.add(e);
                     } else if (idTipo == 9) {
                         Equipamento e = new Antidoto(idEquipamento, idTipo
-                                , x, y, "Defensivo", "antidote.png","Antídoto");
+                                , x, y, "Defensivo", "antidote.png", "Antídoto");
                         equipamentos.add(e);
                     } else if (idTipo == 10) {
-                        Equipamento e = new BeskarHelmet(idEquipamento,idTipo
-                                ,x, y,"Defensivo/Ofensivo","beskar_helmet.png","Beskar Helmet");
+                        Equipamento e = new BeskarHelmet(idEquipamento, idTipo
+                                , x, y, "Defensivo/Ofensivo", "beskar_helmet.png", "Beskar Helmet");
                         equipamentos.add(e);
                     }
                     numeroDaLinha++;
@@ -176,9 +176,9 @@ public class TWDGameManager {
         ArrayList<Equipamento> paraRemover = new ArrayList<>();
         for (Equipamento equip : equipamentos) {
             for (Creature criatura : criaturas) {
-                if(criatura.getTipo() >= 5 && criatura.getTipo() <= 9){
+                if (criatura.getTipo() >= 5 && criatura.getTipo() <= 9) {
                     if (equip.x == criatura.x && equip.y == criatura.y) {
-                        ((Humano)criatura).equipamento = equip;
+                        ((Humano) criatura).equipamento = equip;
                         paraRemover.add(equip);
                     }
                 }
@@ -203,6 +203,20 @@ public class TWDGameManager {
     }
 
     public boolean move(int xO, int yO, int xD, int yD) {
+
+        for (Creature idoso : criaturas) {
+
+            if (idoso.getTipo() == 8 && !(idoso.morta)) {
+                if (idoso.x == xO && idoso.y == yO) {
+                    Equipamento equip = ((Humano) idoso).getEquipamento();
+                    equip.coordenadaVertical(xO);
+                    equip.coordenadaHorizontal(yO);
+                    ((Humano) idoso).setEquipamento(null);
+                }
+            }
+        }
+
+
         if (!(validarCoordenadas(xO, yO, xD, yD))) {
             return false;
         }
@@ -237,8 +251,8 @@ public class TWDGameManager {
 
         Equipamento equip = buscarEquipamento(xD, yD);
         if (isSafeHaven) {
-            for (SafeHaven house : houses){
-                if(house.getY() == cDestino.y && house.getX() == cDestino.x){
+            for (SafeHaven house : houses) {
+                if (house.getY() == cDestino.y && house.getX() == cDestino.x) {
                     cOrigem.coordenadaHorizontal(-1);
                     cOrigem.coordenadaVertical(-1);
                     cOrigem.passouSafeHaven = true;
@@ -250,31 +264,31 @@ public class TWDGameManager {
             if (equipaAtual == 10) {
                 //equipa humano
                 Humano humano;
-                for (Creature vivo : criaturas){
-                    if((vivo.getTipo() >= 5 && vivo.getTipo() <= 9) && !(((Humano)vivo).transformado) ){
-                        if (vivo.x == xO && vivo.y == yO){
-                            if (((Humano)vivo).getEquipamento() == null) {
-                                if(equip.getIdTipo() != 9 && !(((Humano)vivo).getEnvenenado())){
-                                    ((Humano)vivo).setEquipamento(equip);
-                                    ((Humano)vivo).setUsados(((Humano)vivo).getUsados() + 1);
+                for (Creature vivo : criaturas) {
+                    if ((vivo.getTipo() >= 5 && vivo.getTipo() <= 9) && !(((Humano) vivo).transformado)) {
+                        if (vivo.x == xO && vivo.y == yO) {
+                            if (((Humano) vivo).getEquipamento() == null) {
+                                if (equip.getIdTipo() != 9 && !(((Humano) vivo).getEnvenenado())) {
+                                    ((Humano) vivo).setEquipamento(equip);
+                                    ((Humano) vivo).setUsados(((Humano) vivo).getUsados() + 1);
                                     equip.coordenadaVertical(-1);
                                     equip.coordenadaHorizontal(-1);
-                                    if(equip.getIdTipo() == 9 && ((Humano)vivo).envenenado){
-                                        ((Antidoto)equip).usar();
-                                        ((Humano)vivo).curar();
+                                    if (equip.getIdTipo() == 9 && ((Humano) vivo).envenenado) {
+                                        ((Antidoto) equip).usar();
+                                        ((Humano) vivo).curar();
                                     }
-                                    if(equip.getIdTipo() == 8){
-                                        ((Veneno)equip).usar();
-                                        ((Humano)vivo).envenenar();
+                                    if (equip.getIdTipo() == 8) {
+                                        ((Veneno) equip).usar();
+                                        ((Humano) vivo).envenenar();
                                     }
-                                    if(vivo.getTipo()==7&&equip.getIdTipo()==0&&!(((EscudoDeMadeira)equip).usoMilitar)){
+                                    if (vivo.getTipo() == 7 && equip.getIdTipo() == 0 && !(((EscudoDeMadeira) equip).usoMilitar)) {
                                         ((EscudoDeMadeira) equip).setDurabilidadeMilitar();
                                     }
                                     mudarPosicaoCriatura(xO, yO, xD, yD);
                                     turnosSemTransformacao++;
                                 }
                             } else {
-                                largarEquipamento(xO, yO, equip, ((Humano)vivo));
+                                largarEquipamento(xO, yO, equip, ((Humano) vivo));
                                 mudarPosicaoCriatura(xO, yO, xD, yD);
                                 turnosSemTransformacao++;
                             }
@@ -282,10 +296,10 @@ public class TWDGameManager {
                     }
                 }
             } else {
-                for (Creature z : criaturas){
-                    if((z.getTipo() >= 0 && z.getTipo() <= 4) || ((Humano)z).transformado){
-                        if (z.x == xO && z.y == yO){
-                            if ((z.getTipo() != 4 || equip.getIdTipo() != 5) && equip.getIdTipo() != 8){
+                for (Creature z : criaturas) {
+                    if ((z.getTipo() >= 0 && z.getTipo() <= 4) || ((Humano) z).transformado) {
+                        if (z.x == xO && z.y == yO) {
+                            if ((z.getTipo() != 4 || equip.getIdTipo() != 5) && equip.getIdTipo() != 8) {
                                 destruirEquipamento(equip.id);
                                 z.aumentarToolsDestruidas();
                                 mudarPosicaoCriatura(xO, yO, xD, yD);
@@ -299,23 +313,23 @@ public class TWDGameManager {
             }
 
         } else if (cDestino != null) {
-            if((cOrigem.getTipo() >= 5 && cOrigem.getTipo() <= 9) && !(((Humano)cOrigem).transformado)){
-                if(cOrigem.getTipo() == 5 && ((Humano)cOrigem).getEquipamento() != null){
-                    Equipamento arma = ((Humano)cOrigem).getEquipamento();
-                    if(arma.getIdTipo() == 1 && cDestino.getTipo() == 0){
+            if ((cOrigem.getTipo() >= 5 && cOrigem.getTipo() <= 9) && !(((Humano) cOrigem).transformado)) {
+                if (cOrigem.getTipo() == 5 && ((Humano) cOrigem).getEquipamento() != null) {
+                    Equipamento arma = ((Humano) cOrigem).getEquipamento();
+                    if (arma.getIdTipo() == 1 && cDestino.getTipo() == 0) {
                         cDestino.matarCriatura();
                         cDestino.coordenadaVertical(-1);
                         cDestino.coordenadaHorizontal(-1);
                         mudarPosicaoCriatura(xO, yO, xD, yD);
                         turnosSemTransformacao++;
-                    } else if(arma.getIdTipo()==2&&((PistolaWaltherPPK)arma).getBalas()!=0 && cDestino.getTipo() != 4){
-                        ((PistolaWaltherPPK)arma).gastarBalas();
+                    } else if (arma.getIdTipo() == 2 && ((PistolaWaltherPPK) arma).getBalas() != 0 && cDestino.getTipo() != 4) {
+                        ((PistolaWaltherPPK) arma).gastarBalas();
                         cDestino.matarCriatura();
                         cDestino.coordenadaVertical(-1);
                         cDestino.coordenadaHorizontal(-1);
                         mudarPosicaoCriatura(xO, yO, xD, yD);
                         turnosSemTransformacao++;
-                    } else if(arma.getIdTipo() == 6 || arma.getIdTipo() == 10){
+                    } else if (arma.getIdTipo() == 6 || arma.getIdTipo() == 10) {
                         cDestino.matarCriatura();
                         cDestino.coordenadaVertical(-1);
                         cDestino.coordenadaHorizontal(-1);
@@ -324,17 +338,17 @@ public class TWDGameManager {
                     } else {
                         return false;
                     }
-                } else if(cOrigem.getTipo() > 5 && cOrigem.getTipo()<= 9&& ((Humano)cOrigem).getEquipamento() != null){
-                    if(cOrigem.getTipo() != 8){
-                        Equipamento arma = ((Humano)cOrigem).getEquipamento();
-                        if(arma.getIdTipo() == 1 || arma.getIdTipo() == 6 || arma.getIdTipo() == 10){
+                } else if (cOrigem.getTipo() > 5 && cOrigem.getTipo() <= 9 && ((Humano) cOrigem).getEquipamento() != null) {
+                    if (cOrigem.getTipo() != 8) {
+                        Equipamento arma = ((Humano) cOrigem).getEquipamento();
+                        if (arma.getIdTipo() == 1 || arma.getIdTipo() == 6 || arma.getIdTipo() == 10) {
                             cDestino.matarCriatura();
                             cDestino.coordenadaVertical(-1);
                             cDestino.coordenadaHorizontal(-1);
                             mudarPosicaoCriatura(xO, yO, xD, yD);
                             turnosSemTransformacao++;
-                        } else if(arma.getIdTipo()==2&&((PistolaWaltherPPK)arma).getBalas()!=0&&cDestino.getTipo()!=4){
-                            ((PistolaWaltherPPK)arma).gastarBalas();
+                        } else if (arma.getIdTipo() == 2 && ((PistolaWaltherPPK) arma).getBalas() != 0 && cDestino.getTipo() != 4) {
+                            ((PistolaWaltherPPK) arma).gastarBalas();
                             cDestino.matarCriatura();
                             cDestino.coordenadaVertical(-1);
                             cDestino.coordenadaHorizontal(-1);
@@ -348,9 +362,9 @@ public class TWDGameManager {
                     return false;
                 }
             }
-            if((cOrigem.getTipo() >= 0 && cOrigem.getTipo() <= 4) || ((Humano)cOrigem).transformado) {
+            if ((cOrigem.getTipo() >= 0 && cOrigem.getTipo() <= 4) || ((Humano) cOrigem).transformado) {
                 if (!(((Humano) cDestino).transformado)) {
-                    if (cDestino.getTipo()>= 5 && cDestino.getTipo() < 9&&((Humano)cDestino).getEquipamento()!= null){
+                    if (cDestino.getTipo() >= 5 && cDestino.getTipo() < 9 && ((Humano) cDestino).getEquipamento() != null) {
                         Equipamento defesa = ((Humano) cDestino).getEquipamento();
                         if (defesa.getIdTipo() == 0 && ((EscudoDeMadeira) defesa).getDurabilidade() != 0) {
                             ((EscudoDeMadeira) defesa).tirarDurabilidade();
@@ -377,9 +391,9 @@ public class TWDGameManager {
                         } else if (defesa.getIdTipo() == 8) {
                             mudarPosicaoCriatura(xO, yO, xO, yO);
                             turnosSemTransformacao++;
-                        }else if(defesa.getIdTipo()==2&&((PistolaWaltherPPK)defesa).getBalas()!=0&&cOrigem.getTipo()!=4){
+                        } else if (defesa.getIdTipo() == 2 && ((PistolaWaltherPPK) defesa).getBalas() != 0 && cOrigem.getTipo() != 4) {
 
-                            ((PistolaWaltherPPK)defesa).gastarBalas();
+                            ((PistolaWaltherPPK) defesa).gastarBalas();
                             cOrigem.matarCriatura();
                             cOrigem.coordenadaVertical(-1);
                             cOrigem.coordenadaHorizontal(-1);
@@ -390,7 +404,7 @@ public class TWDGameManager {
                             turnosSemTransformacao = 0;
                         }
                     }
-                } else{
+                } else {
                     return false;
                 }
             }
@@ -404,17 +418,17 @@ public class TWDGameManager {
         mudarDiaNoite();
         turno++;
 
-        for(Creature envenenados : criaturas){
-            if(envenenados.getTipo() >= 5 && envenenados.getTipo() <= 9){
-                if(((Humano)envenenados).getEnvenenado()){
-                    Equipamento veneno = ((Humano)envenenados).getEquipamento();
-                    if(veneno.getIdTipo() == 8){
-                        if(((Veneno)veneno).getTurnoAtivo() == ((Veneno)veneno).maxTurno){
+        for (Creature envenenados : criaturas) {
+            if (envenenados.getTipo() >= 5 && envenenados.getTipo() <= 9) {
+                if (((Humano) envenenados).getEnvenenado()) {
+                    Equipamento veneno = ((Humano) envenenados).getEquipamento();
+                    if (veneno.getIdTipo() == 8) {
+                        if (((Veneno) veneno).getTurnoAtivo() == ((Veneno) veneno).maxTurno) {
                             envenenados.matarCriatura();
                             envenenados.coordenadaHorizontal(-1);
                             envenenados.coordenadaVertical(-1);
                         } else {
-                            ((Veneno)veneno).aumentarTurno();
+                            ((Veneno) veneno).aumentarTurno();
                         }
                     }
                 }
@@ -467,8 +481,8 @@ public class TWDGameManager {
     }
 
     private Creature getCreature(int xO, int yO) {
-        for (Creature criatura : criaturas){
-            if (criatura.x == xO && criatura.y == yO){
+        for (Creature criatura : criaturas) {
+            if (criatura.x == xO && criatura.y == yO) {
                 return criatura;
             }
         }
@@ -480,23 +494,24 @@ public class TWDGameManager {
         equipamentoAntigo.coordenadaVertical(xO);
         equipamentoAntigo.coordenadaHorizontal(yO);
         humano.setEquipamento(newEquip);
-        if(newEquip.getIdTipo() != 9 && !(humano.getEnvenenado())){
+        if (newEquip.getIdTipo() != 9 && !(humano.getEnvenenado())) {
             humano.setUsados(humano.getUsados() + 1);
             newEquip.coordenadaVertical(-1);
             newEquip.coordenadaHorizontal(-1);
-            if(newEquip.getIdTipo() == 9 && humano.envenenado){
-                ((Antidoto)newEquip).usar();
+            if (newEquip.getIdTipo() == 9 && humano.envenenado) {
+                ((Antidoto) newEquip).usar();
                 humano.curar();
             }
-            if(newEquip.getIdTipo() == 8){
-                ((Veneno)newEquip).usar();
+            if (newEquip.getIdTipo() == 8) {
+                ((Veneno) newEquip).usar();
                 humano.envenenar();
             }
-            if(humano.getTipo() == 7 && newEquip.getIdTipo() == 0 && !(((EscudoDeMadeira)newEquip).usoMilitar)){
+            if (humano.getTipo() == 7 && newEquip.getIdTipo() == 0 && !(((EscudoDeMadeira) newEquip).usoMilitar)) {
                 ((EscudoDeMadeira) newEquip).setDurabilidadeMilitar();
             }
         }
     }
+
     private boolean validaEquipaAtual(int xO, int yO) {
         Creature c = getCreature(xO, yO);
         if (equipaAtual == 10 && c.getNomeEquipa().equals("Os Outros")) {
@@ -519,8 +534,8 @@ public class TWDGameManager {
     }
 
     private boolean mudarPosicaoCriatura(int xO, int yO, int xD, int yD) {
-        for (Creature criatura : criaturas){
-            if (criatura.x == xO && criatura.y == yO){
+        for (Creature criatura : criaturas) {
+            if (criatura.x == xO && criatura.y == yO) {
                 criatura.coordenadaHorizontal(yD);
                 criatura.coordenadaVertical(xD);
                 return true;
@@ -563,12 +578,12 @@ public class TWDGameManager {
     public boolean gameIsOver() {
         int naoBairro = 0;
         int allHumans = 0;
-        if(turnosSemTransformacao == 6) {
+        if (turnosSemTransformacao == 6) {
             return true;
         }
-        for (Creature person : criaturas){
-            if (person.getTipo() >= 5 && person.getTipo() <= 9){
-                if(person.passouSafeHaven || ((Humano)person).transformado || person.morta) {
+        for (Creature person : criaturas) {
+            if (person.getTipo() >= 5 && person.getTipo() <= 9) {
+                if (person.passouSafeHaven || ((Humano) person).transformado || person.morta) {
                     naoBairro++;
                 }
                 allHumans++;
@@ -589,8 +604,8 @@ public class TWDGameManager {
     }
 
     public int getElementId(int x, int y) {
-        for (Creature criatura : criaturas){
-            if(criatura.x == x && criatura.y == y){
+        for (Creature criatura : criaturas) {
+            if (criatura.x == x && criatura.y == y) {
                 return criatura.getId();
             }
         }
@@ -618,18 +633,18 @@ public class TWDGameManager {
         resultados.add(linha2);
         resultados.add(linha3);
         resultados.add(linha4);
-        for (Creature criatura : criaturas){
-            if((criatura.idTipo >= 5  && criatura.idTipo <= 9) && !(((Humano)criatura).transformado)){
-                if ((criatura.passouSafeHaven) && (criatura.morta)){
+        for (Creature criatura : criaturas) {
+            if ((criatura.idTipo >= 5 && criatura.idTipo <= 9) && !(((Humano) criatura).transformado)) {
+                if ((criatura.passouSafeHaven) && (criatura.morta)) {
                     resultados.add(criatura.id + " " + criatura.nome);
                 }
             }
         }
         String linha6 = "OS OUTROS";
         resultados.add(linha6);
-        for (Creature criatura : criaturas){
-            if((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano)criatura).transformado){
-                if(!(criatura.morta)){
+        for (Creature criatura : criaturas) {
+            if ((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano) criatura).transformado) {
+                if (!(criatura.morta)) {
                     resultados.add(criatura.id + " " + "(antigamente conhecido como " + criatura.nome + ")");
                 }
             }
@@ -638,9 +653,9 @@ public class TWDGameManager {
         resultados.add(linha8);
         String linha9 = "OS VIVOS";
         resultados.add(linha9);
-        for (Creature criatura : criaturas){
-            if(criatura.idTipo >= 5  && criatura.idTipo <= 9){
-                if (criatura.passouSafeHaven){
+        for (Creature criatura : criaturas) {
+            if (criatura.idTipo >= 5 && criatura.idTipo <= 9) {
+                if (criatura.passouSafeHaven) {
                     resultados.add(criatura.id + " " + criatura.nome);
                 }
             }
@@ -649,18 +664,18 @@ public class TWDGameManager {
         resultados.add(linha11);
         String linha12 = "OS VIVOS";
         resultados.add(linha12);
-        for (Creature criatura : criaturas){
-            if(criatura.idTipo >= 5  && criatura.idTipo <= 9){
-                if ((((Humano)criatura).envenenado) && (criatura.morta)){
+        for (Creature criatura : criaturas) {
+            if (criatura.idTipo >= 5 && criatura.idTipo <= 9) {
+                if ((((Humano) criatura).envenenado) && (criatura.morta)) {
                     resultados.add(criatura.id + " " + criatura.nome);
                 }
             }
         }
         String linha14 = "OS OUTROS";
         resultados.add(linha14);
-        for (Creature criatura : criaturas){
-            if((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano)criatura).transformado){
-                if(criatura.morta){
+        for (Creature criatura : criaturas) {
+            if ((criatura.idTipo >= 0 && criatura.idTipo <= 4) || ((Humano) criatura).transformado) {
+                if (criatura.morta) {
                     resultados.add(criatura.id + " " + "(antigamente conhecido como " + criatura.nome + ")");
                 }
             }
@@ -693,22 +708,22 @@ public class TWDGameManager {
     }
 
 
-    public List<Integer>getIdsInSafeHaven(){
+    public List<Integer> getIdsInSafeHaven() {
         ArrayList<Integer> ids = new ArrayList<>();
-        for (Creature criatura : criaturas){
-            if (criatura.passouSafeHaven){
+        for (Creature criatura : criaturas) {
+            if (criatura.passouSafeHaven) {
                 ids.add(criatura.getId());
             }
         }
         return ids;
     }
 
-    public int getEquipmentId(int creatureId){
-        for (Creature criatura : criaturas){
-            if(criatura.id == creatureId){
-                if(criatura.idTipo <= 9 && criatura.idTipo >= 5){
-                    if (((Humano)criatura).getEquipamento() != null){
-                        return ((Humano)criatura).equipamento.id;
+    public int getEquipmentId(int creatureId) {
+        for (Creature criatura : criaturas) {
+            if (criatura.id == creatureId) {
+                if (criatura.idTipo <= 9 && criatura.idTipo >= 5) {
+                    if (((Humano) criatura).getEquipamento() != null) {
+                        return ((Humano) criatura).equipamento.id;
                     }
                 }
             }
@@ -716,30 +731,30 @@ public class TWDGameManager {
         return 0;
     }
 
-    public String getEquipmentInfo(int equipmentId){
+    public String getEquipmentInfo(int equipmentId) {
         Equipamento aux = new Equipamento();
         for (int i = 0; i < equipamentos.size(); i++) {
             if (equipamentos.get(i).id == equipmentId) {
                 aux = equipamentos.get(i);
             }
         }
-        if(aux.idTipo == 0){
-            return aux.nome +  " | " + ((EscudoDeMadeira)aux).getDurabilidade();
+        if (aux.idTipo == 0) {
+            return aux.nome + " | " + ((EscudoDeMadeira) aux).getDurabilidade();
         }
-        if(aux.idTipo == 2){
-            return aux.nome + " | " + ((PistolaWaltherPPK)aux).getBalas();
+        if (aux.idTipo == 2) {
+            return aux.nome + " | " + ((PistolaWaltherPPK) aux).getBalas();
         }
-        if(aux.idTipo == 7){
-            return aux.nome + " | " + ((GarrafaDeLixivia)aux).getUsos();
+        if (aux.idTipo == 7) {
+            return aux.nome + " | " + ((GarrafaDeLixivia) aux).getUsos();
         }
-        if(aux.idTipo == 8){
-            if (((Veneno)aux).getUsado()){
+        if (aux.idTipo == 8) {
+            if (((Veneno) aux).getUsado()) {
                 return aux.nome + " | Vazio";
             }
             return aux.nome + " | Cheio";
         }
-        if(aux.idTipo == 9){
-            if (((Antidoto)aux).getUsado()){
+        if (aux.idTipo == 9) {
+            if (((Antidoto) aux).getUsado()) {
                 return aux.nome + " | Vazio";
             }
             return aux.nome + " | Cheio";
@@ -750,23 +765,23 @@ public class TWDGameManager {
     public boolean saveGame(File fich) {
         try {
             FileWriter ficheiro = new FileWriter(fich);
-            ficheiro.write( numeroLinhas + " " + numeroColunas + '\n');
-            ficheiro.write( equipaAtual + '\n');
-            ficheiro.write( numeroLinhas + " " + numeroColunas + '\n');
-            ficheiro.write( criaturas.size() + '\n');
-            ficheiro.write( numeroLinhas + " " + numeroColunas + '\n');
-            for (Creature criatura : criaturas){
+            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
+            ficheiro.write(equipaAtual + '\n');
+            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
+            ficheiro.write(criaturas.size() + '\n');
+            ficheiro.write(numeroLinhas + " " + numeroColunas + '\n');
+            for (Creature criatura : criaturas) {
                 String linha = criatura.id + " : " + criatura.idTipo + " : " + criatura.nome + " : ";
-                ficheiro.write(linha + criatura.x + " : " + criatura.y +'\n');
+                ficheiro.write(linha + criatura.x + " : " + criatura.y + '\n');
             }
             ficheiro.write(equipamentos.size() + '\n');
-            for (Equipamento equip : equipamentos){
+            for (Equipamento equip : equipamentos) {
                 String linha = equip.id + " : " + equip.idTipo + " : ";
-                ficheiro.write(linha + equip.x + " : " + equip.y +'\n');
+                ficheiro.write(linha + equip.x + " : " + equip.y + '\n');
             }
             ficheiro.write(houses.size() + '\n');
-            for (SafeHaven safe : houses){
-                ficheiro.write(safe.getX() + " : " + safe.getY() +'\n');
+            for (SafeHaven safe : houses) {
+                ficheiro.write(safe.getX() + " : " + safe.getY() + '\n');
             }
 
             ficheiro.close();
@@ -776,7 +791,7 @@ public class TWDGameManager {
         return true;
     }
 
-    public boolean loadGame(File fich){
+    public boolean loadGame(File fich) {
         int numeroDaLinha = 0;
         try {
             Scanner leitorFicheiro = new Scanner(fich);
@@ -865,47 +880,47 @@ public class TWDGameManager {
 
                     if (idTipo == 0) {
                         Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
-                                , x, y, "Defensivo", "equipment_0.png","Escudo de Madeira");
+                                , x, y, "Defensivo", "equipment_0.png", "Escudo de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 1) {
                         Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "equipment_1.png","Espada Hattori Hanzo");
+                                , x, y, "Ofensivo", "equipment_1.png", "Espada Hattori Hanzo");
                         equipamentos.add(e);
                     } else if (idTipo == 2) {
                         Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "gun.png","Pistola Walther PPK");
+                                , x, y, "Ofensivo", "gun.png", "Pistola Walther PPK");
                         equipamentos.add(e);
                     } else if (idTipo == 3) {
                         Equipamento e = new EscudoTactico(idEquipamento, idTipo
-                                , x, y, "Defensivo", "tactical_shield.png","Escudo Táctico");
+                                , x, y, "Defensivo", "tactical_shield.png", "Escudo Táctico");
                         equipamentos.add(e);
                     } else if (idTipo == 4) {
                         Equipamento e = new RevistaMaria(idEquipamento, idTipo
-                                , x, y, "Defensivo", "rolled_magazine.png","Revista Maria");
+                                , x, y, "Defensivo", "rolled_magazine.png", "Revista Maria");
                         equipamentos.add(e);
                     } else if (idTipo == 5) {
                         Equipamento e = new CabecadeAlho(idEquipamento, idTipo
-                                , x, y, "Defensivo", "garlic.png","Cabeça de Alho");
+                                , x, y, "Defensivo", "garlic.png", "Cabeça de Alho");
                         equipamentos.add(e);
                     } else if (idTipo == 6) {
                         Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "steak.png","Estaca de Madeira");
+                                , x, y, "Ofensivo", "steak.png", "Estaca de Madeira");
                         equipamentos.add(e);
                     } else if (idTipo == 7) {
                         Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
-                                ,x,y, "Defensivo","bleach.png","Garrafa de Lixívia (1 litro)");
+                                , x, y, "Defensivo", "bleach.png", "Garrafa de Lixívia (1 litro)");
                         equipamentos.add(e);
                     } else if (idTipo == 8) {
                         Equipamento e = new Veneno(idEquipamento, idTipo
-                                , x, y, "Defensivo", "poison.png","Veneno");
+                                , x, y, "Defensivo", "poison.png", "Veneno");
                         equipamentos.add(e);
                     } else if (idTipo == 9) {
                         Equipamento e = new Antidoto(idEquipamento, idTipo
-                                , x, y, "Defensivo", "antidote.png","Antídoto");
+                                , x, y, "Defensivo", "antidote.png", "Antídoto");
                         equipamentos.add(e);
                     } else if (idTipo == 10) {
                         Equipamento e = new BeskarHelmet(idEquipamento, idTipo
-                                ,x,y,"Defensivo/Ofensivo","beskar_helmet.png","Beskar Helmet");
+                                , x, y, "Defensivo/Ofensivo", "beskar_helmet.png", "Beskar Helmet");
                         equipamentos.add(e);
                     }
                     numeroDaLinha++;
@@ -932,7 +947,7 @@ public class TWDGameManager {
         return true;
     }
 
-    public String[] popCultureExtravaganza(){
+    public String[] popCultureExtravaganza() {
         String[] respostas = new String[14];
         respostas[0] = "Resident Evil";
         respostas[1] = "Evil Dead";
