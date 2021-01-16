@@ -5,6 +5,8 @@ public abstract class Humano extends Creature {
     protected Equipamento equipamento;
     protected boolean envenenado = false;
     protected boolean transformado = false;
+    protected int zombiesDestruidos;
+
 
     public Humano(int id, int idTipo, String nome, int x, int y, String imagemPng) {
         super(idTipo, id, x, y, nome, imagemPng);
@@ -16,19 +18,19 @@ public abstract class Humano extends Creature {
         return "human.png";
     }
 
-    public boolean getEnvenenado(){
+    public boolean getEnvenenado() {
         return envenenado;
     }
 
-    public void envenenar(){
+    public void envenenar() {
         envenenado = true;
     }
 
-    public void curar(){
+    public void curar() {
         envenenado = false;
     }
 
-    public void transformar(){
+    public void transformar() {
         transformado = true;
     }
 
@@ -48,7 +50,7 @@ public abstract class Humano extends Creature {
         this.equipamento = equipamento;
     }
 
-    public String getNomeEquipa(){
+    public String getNomeEquipa() {
         return "Os Vivos";
     }
 }

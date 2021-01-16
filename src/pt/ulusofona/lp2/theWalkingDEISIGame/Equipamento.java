@@ -8,7 +8,7 @@ public class Equipamento {
     protected String titulo;
     protected String imagemPng;
     protected String nome;
-
+    protected int equipamentoSalvou;
     public Equipamento(){}
 
     public Equipamento(int id, int idTipo, int x, int y, String titulo, String imagemPng,String nome) {

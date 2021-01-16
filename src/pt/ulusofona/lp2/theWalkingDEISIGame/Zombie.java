@@ -2,8 +2,9 @@ package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public abstract class Zombie extends Creature {
     int totalEquipDestrui;
+    int numeroVivosTransformados;
 
-    public Zombie(int id, int idTipo, String nome, int x, int y, String imagemPng ) {
+    public Zombie(int id, int idTipo, String nome, int x, int y, String imagemPng) {
         super(idTipo, id, x, y, nome, imagemPng);
     }
 
@@ -14,13 +15,12 @@ public abstract class Zombie extends Creature {
     }
 
 
-
     public int getTipo() {
         return idTipo;
     }
 
 
-    public String getNomeEquipa(){
+    public String getNomeEquipa() {
         return "Os Outros";
     }
 
