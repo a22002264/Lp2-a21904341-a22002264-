@@ -27,10 +27,10 @@ public class TWDGameManager {
 
     }
 
-    public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException {
+    public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
         String nomeFicheiro = "Ficheiro.txt";
         int numeroDaLinha = 0;
-        try {
+
             Scanner leitorFicheiro = new Scanner(ficheiroInicial);
             while (leitorFicheiro.hasNextLine()) {
                 if (numeroDaLinha == 0) {
@@ -169,10 +169,8 @@ public class TWDGameManager {
             }
             leitorFicheiro.close();
             verficarSeHumanoTemEquip();
-        } catch (FileNotFoundException exception) {
-            String mensagem = "Erro: o ficheiro " + nomeFicheiro + " nao foi encontrado.";
-            System.out.println(mensagem);
-        }
+
+
     }
 
     private void verficarSeHumanoTemEquip() {
@@ -1053,6 +1051,10 @@ public class TWDGameManager {
     }
 
     private List<String> getTiposDeZombieESeusEquipamentosDestruidos() {
+
+        //criaturas.stream().collect(
+          //      Collectors.groupingBy(Creature::getTipo,Collectors.summingInt(c->((Zombie)c).totalEquipDestrui)));
+
         return null;
     }
 

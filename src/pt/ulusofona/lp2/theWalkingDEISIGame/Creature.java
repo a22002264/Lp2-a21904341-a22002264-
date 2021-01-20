@@ -21,15 +21,19 @@ public abstract class Creature {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public boolean getPassouSafeHeaven() {
         return passouSafeHaven;
     }
 
-    public int getToolsDestroy(){
+    public int getToolsDestroy() {
         return toolsDestroy;
     }
 
-    public void aumentarToolsDestruidas(){
+    public void aumentarToolsDestruidas() {
         toolsDestroy++;
     }
 
@@ -59,7 +63,7 @@ public abstract class Creature {
     }
 
 
-    public abstract boolean comportamentos(int xD, int yD, boolean diaNoite,boolean safeHaven);
+    public abstract boolean comportamentos(int xD, int yD, boolean diaNoite, boolean safeHaven);
 
     public String salvo() {
         if (passouSafeHaven) {
@@ -72,9 +76,9 @@ public abstract class Creature {
 
     }
 
-    public void matarCriatura(){
+    public void matarCriatura() {
         morta = true;
     }
 
-    public abstract  String getNomeEquipa();
+    public abstract String getNomeEquipa();
 }
