@@ -253,7 +253,7 @@ public class TWDGameManager {
         Equipamento equip = buscarEquipamento(xD, yD);
         if (isSafeHaven) {
             for (SafeHaven house : houses) {
-                if (house.getY() == cDestino.y && house.getX() == cDestino.x) {
+                if (cDestino!=null && house.getY() == cDestino.y && house.getX() == cDestino.x) {
                     cOrigem.coordenadaHorizontal(-1);
                     cOrigem.coordenadaVertical(-1);
                     cOrigem.passouSafeHaven = true;
@@ -1064,8 +1064,10 @@ public class TWDGameManager {
                 .sorted((c1, c2) -> {
                     if ((c1.getTipo() >= 0 && c1.getTipo() <= 4) && (c2.getTipo() >= 0 && c2.getTipo() <= 4)) {
                         return ((Zombie) c2).totalEquipDestrui - ((Zombie) c1).totalEquipDestrui;
-                    } else {
+                    } else  if ((c1.getTipo() >= 5 && c1.getTipo() <= 9) && (c2.getTipo() >= 5 && c2.getTipo() <= 9)) {
                         return ((Humano) c2).usados - ((Humano) c1).usados;
+                    }else{
+                        return 0;
                     }
                 })
                 .limit(5)
