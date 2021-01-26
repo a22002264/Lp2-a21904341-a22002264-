@@ -19,156 +19,157 @@ public class TWDGameManager {
     ArrayList<Equipamento> equipamentos;
     ArrayList<Creature> criaturas;
     ArrayList<SafeHaven> houses;
+    ArrayList<Creature> entrouSafeHeaven;
 
     public TWDGameManager() {
         this.criaturas = new ArrayList<>();
         this.equipamentos = new ArrayList<>();
         this.houses = new ArrayList<>();
-
+        this.entrouSafeHeaven = new ArrayList<>();
     }
 
     public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
         String nomeFicheiro = "Ficheiro.txt";
         int numeroDaLinha = 0;
 
-            Scanner leitorFicheiro = new Scanner(ficheiroInicial);
-            while (leitorFicheiro.hasNextLine()) {
-                if (numeroDaLinha == 0) {
-                    String linha0 = leitorFicheiro.nextLine();
-                    String dados[] = linha0.split(" ");
-                    numeroLinhas = Integer.parseInt(dados[0]);
-                    numeroColunas = Integer.parseInt(dados[1]);
-                    numeroDaLinha++;
-                    continue;
+        Scanner leitorFicheiro = new Scanner(ficheiroInicial);
+        while (leitorFicheiro.hasNextLine()) {
+            if (numeroDaLinha == 0) {
+                String linha0 = leitorFicheiro.nextLine();
+                String dados[] = linha0.split(" ");
+                numeroLinhas = Integer.parseInt(dados[0]);
+                numeroColunas = Integer.parseInt(dados[1]);
+                numeroDaLinha++;
+                continue;
+            }
+            if (numeroDaLinha == 1) {
+                String linha1 = leitorFicheiro.nextLine();
+                inicialTeam = Integer.parseInt(linha1);
+                equipaAtual = Integer.parseInt(linha1);
+                numeroDaLinha++;
+                continue;
+            }
+            if (numeroDaLinha == 2) {
+                String linha2 = leitorFicheiro.nextLine();
+                int numeroCriaturas = Integer.parseInt(linha2);
+                if (numeroCriaturas < 2) {
+                    throw new InvalidTWDInitialFileException(false, false, "");
                 }
-                if (numeroDaLinha == 1) {
-                    String linha1 = leitorFicheiro.nextLine();
-                    inicialTeam = Integer.parseInt(linha1);
-                    equipaAtual = Integer.parseInt(linha1);
-                    numeroDaLinha++;
-                    continue;
-                }
-                if (numeroDaLinha == 2) {
-                    String linha2 = leitorFicheiro.nextLine();
-                    int numeroCriaturas = Integer.parseInt(linha2);
-                    if (numeroCriaturas < 2) {
-                        throw new InvalidTWDInitialFileException(false, false, "");
-                    }
-                    for (int i = 0; i < numeroCriaturas; i++) {
-                        String linha3 = leitorFicheiro.nextLine();
-                        String dados1[] = linha3.split(" : ");
-                        if (dados1.length != 5) {
-                            throw new InvalidTWDInitialFileException(true, false, linha3);
-                        }
-                        int idCriatura = Integer.parseInt(dados1[0]);
-                        int idTipo = Integer.parseInt(dados1[1]);
-                        String nomeCriatura = dados1[2];
-                        int x = Integer.parseInt(dados1[3]);
-                        int y = Integer.parseInt(dados1[4]);
-                        if (idTipo == 0) {
-                            Zombie z = new CriancaZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z);
-                        } else if (idTipo == 1) {
-                            Zombie z1 = new AdultoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z1);
-                        } else if (idTipo == 2) {
-                            Zombie z2 = new MilitarZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z2);
-                        } else if (idTipo == 3) {
-                            Zombie z3 = new IdosoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z3);
-                        } else if (idTipo == 4) {
-                            Zombie z4 = new ZombieVampiro(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
-                            criaturas.add(z4);
-                        } else if (idTipo == 5) {
-                            Humano a = new CriancaVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a);
-                        } else if (idTipo == 6) {
-                            Humano a1 = new AdultoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a1);
-                        } else if (idTipo == 7) {
-                            Humano a2 = new MilitarVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a2);
-                        } else if (idTipo == 8) {
-                            Humano a3 = new IdosoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a3);
-                        } else if (idTipo == 9) {
-                            Humano a4 = new Cao(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
-                            criaturas.add(a4);
-                        }
-                        numeroDaLinha++;
-                    }
-                    continue;
-                }
-                int numeroEquipamentos = Integer.parseInt(leitorFicheiro.nextLine());
-
-                for (int i = 0; i < numeroEquipamentos; i++) {
+                for (int i = 0; i < numeroCriaturas; i++) {
                     String linha3 = leitorFicheiro.nextLine();
                     String dados1[] = linha3.split(" : ");
-                    int idEquipamento = Integer.parseInt(dados1[0]);
+                    if (dados1.length != 5) {
+                        throw new InvalidTWDInitialFileException(true, false, linha3);
+                    }
+                    int idCriatura = Integer.parseInt(dados1[0]);
                     int idTipo = Integer.parseInt(dados1[1]);
-                    int x = Integer.parseInt(dados1[2]);
-                    int y = Integer.parseInt(dados1[3]);
-
+                    String nomeCriatura = dados1[2];
+                    int x = Integer.parseInt(dados1[3]);
+                    int y = Integer.parseInt(dados1[4]);
                     if (idTipo == 0) {
-                        Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
-                                , x, y, "Defensivo", "equipment_0.png", "Escudo de Madeira");
-                        equipamentos.add(e);
+                        Zombie z = new CriancaZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                        criaturas.add(z);
                     } else if (idTipo == 1) {
-                        Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "equipment_1.png", "Espada Hattori Hanzo");
-                        equipamentos.add(e);
+                        Zombie z1 = new AdultoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                        criaturas.add(z1);
                     } else if (idTipo == 2) {
-                        Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "gun.png", "Pistola Walther PPK");
-                        equipamentos.add(e);
+                        Zombie z2 = new MilitarZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                        criaturas.add(z2);
                     } else if (idTipo == 3) {
-                        Equipamento e = new EscudoTactico(idEquipamento, idTipo
-                                , x, y, "Defensivo", "tactical_shield.png", "Escudo Táctico");
-                        equipamentos.add(e);
+                        Zombie z3 = new IdosoZombie(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                        criaturas.add(z3);
                     } else if (idTipo == 4) {
-                        Equipamento e = new RevistaMaria(idEquipamento, idTipo
-                                , x, y, "Defensivo", "rolled_magazine.png", "Revista Maria");
-                        equipamentos.add(e);
+                        Zombie z4 = new ZombieVampiro(idCriatura, idTipo, nomeCriatura, x, y, "zombie.png");
+                        criaturas.add(z4);
                     } else if (idTipo == 5) {
-                        Equipamento e = new CabecadeAlho(idEquipamento, idTipo
-                                , x, y, "Defensivo", "garlic.png", "Cabeça de Alho");
-                        equipamentos.add(e);
+                        Humano a = new CriancaVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                        criaturas.add(a);
                     } else if (idTipo == 6) {
-                        Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
-                                , x, y, "Ofensivo", "steak.png", "Estaca de Madeira");
-                        equipamentos.add(e);
+                        Humano a1 = new AdultoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                        criaturas.add(a1);
                     } else if (idTipo == 7) {
-                        Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
-                                , x, y, "Defensivo", "bleach.png", "Garrafa de Lixívia (1 litro)");
-                        equipamentos.add(e);
+                        Humano a2 = new MilitarVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                        criaturas.add(a2);
                     } else if (idTipo == 8) {
-                        Equipamento e = new Veneno(idEquipamento, idTipo
-                                , x, y, "Defensivo", "poison.png", "Veneno");
-                        equipamentos.add(e);
+                        Humano a3 = new IdosoVivo(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                        criaturas.add(a3);
                     } else if (idTipo == 9) {
-                        Equipamento e = new Antidoto(idEquipamento, idTipo
-                                , x, y, "Defensivo", "antidote.png", "Antídoto");
-                        equipamentos.add(e);
-                    } else if (idTipo == 10) {
-                        Equipamento e = new BeskarHelmet(idEquipamento, idTipo
-                                , x, y, "Defensivo/Ofensivo", "beskar_helmet.png", "Beskar Helmet");
-                        equipamentos.add(e);
+                        Humano a4 = new Cao(idCriatura, idTipo, nomeCriatura, x, y, "human.png");
+                        criaturas.add(a4);
                     }
                     numeroDaLinha++;
                 }
-                int numerHouses = Integer.parseInt(leitorFicheiro.nextLine());
-                for (int i = 0; i < numerHouses; i++) {
-                    String linha4 = leitorFicheiro.nextLine();
-                    String dados0[] = linha4.split(" : ");
-                    int x = Integer.parseInt(dados0[0]);
-                    int y = Integer.parseInt(dados0[1]);
-                    SafeHaven s = new SafeHaven(x, y);
-                    houses.add(s);
-                }
+                continue;
             }
-            leitorFicheiro.close();
-            verficarSeHumanoTemEquip();
+            int numeroEquipamentos = Integer.parseInt(leitorFicheiro.nextLine());
+
+            for (int i = 0; i < numeroEquipamentos; i++) {
+                String linha3 = leitorFicheiro.nextLine();
+                String dados1[] = linha3.split(" : ");
+                int idEquipamento = Integer.parseInt(dados1[0]);
+                int idTipo = Integer.parseInt(dados1[1]);
+                int x = Integer.parseInt(dados1[2]);
+                int y = Integer.parseInt(dados1[3]);
+
+                if (idTipo == 0) {
+                    Equipamento e = new EscudoDeMadeira(idEquipamento, idTipo
+                            , x, y, "Defensivo", "equipment_0.png", "Escudo de Madeira");
+                    equipamentos.add(e);
+                } else if (idTipo == 1) {
+                    Equipamento e = new EspadaHattoriHanzo(idEquipamento, idTipo
+                            , x, y, "Ofensivo", "equipment_1.png", "Espada Hattori Hanzo");
+                    equipamentos.add(e);
+                } else if (idTipo == 2) {
+                    Equipamento e = new PistolaWaltherPPK(idEquipamento, idTipo
+                            , x, y, "Ofensivo", "gun.png", "Pistola Walther PPK");
+                    equipamentos.add(e);
+                } else if (idTipo == 3) {
+                    Equipamento e = new EscudoTactico(idEquipamento, idTipo
+                            , x, y, "Defensivo", "tactical_shield.png", "Escudo Táctico");
+                    equipamentos.add(e);
+                } else if (idTipo == 4) {
+                    Equipamento e = new RevistaMaria(idEquipamento, idTipo
+                            , x, y, "Defensivo", "rolled_magazine.png", "Revista Maria");
+                    equipamentos.add(e);
+                } else if (idTipo == 5) {
+                    Equipamento e = new CabecadeAlho(idEquipamento, idTipo
+                            , x, y, "Defensivo", "garlic.png", "Cabeça de Alho");
+                    equipamentos.add(e);
+                } else if (idTipo == 6) {
+                    Equipamento e = new EstacaDeMadeira(idEquipamento, idTipo
+                            , x, y, "Ofensivo", "steak.png", "Estaca de Madeira");
+                    equipamentos.add(e);
+                } else if (idTipo == 7) {
+                    Equipamento e = new GarrafaDeLixivia(idEquipamento, idTipo
+                            , x, y, "Defensivo", "bleach.png", "Garrafa de Lixívia (1 litro)");
+                    equipamentos.add(e);
+                } else if (idTipo == 8) {
+                    Equipamento e = new Veneno(idEquipamento, idTipo
+                            , x, y, "Defensivo", "poison.png", "Veneno");
+                    equipamentos.add(e);
+                } else if (idTipo == 9) {
+                    Equipamento e = new Antidoto(idEquipamento, idTipo
+                            , x, y, "Defensivo", "antidote.png", "Antídoto");
+                    equipamentos.add(e);
+                } else if (idTipo == 10) {
+                    Equipamento e = new BeskarHelmet(idEquipamento, idTipo
+                            , x, y, "Defensivo/Ofensivo", "beskar_helmet.png", "Beskar Helmet");
+                    equipamentos.add(e);
+                }
+                numeroDaLinha++;
+            }
+            int numerHouses = Integer.parseInt(leitorFicheiro.nextLine());
+            for (int i = 0; i < numerHouses; i++) {
+                String linha4 = leitorFicheiro.nextLine();
+                String dados0[] = linha4.split(" : ");
+                int x = Integer.parseInt(dados0[0]);
+                int y = Integer.parseInt(dados0[1]);
+                SafeHaven s = new SafeHaven(x, y);
+                houses.add(s);
+            }
+        }
+        leitorFicheiro.close();
+        verficarSeHumanoTemEquip();
 
 
     }
@@ -252,13 +253,10 @@ public class TWDGameManager {
 
         Equipamento equip = buscarEquipamento(xD, yD);
         if (isSafeHaven) {
-            for (SafeHaven house : houses) {
-                if (cDestino!=null && house.getY() == cDestino.y && house.getX() == cDestino.x) {
-                    cOrigem.coordenadaHorizontal(-1);
-                    cOrigem.coordenadaVertical(-1);
-                    cOrigem.passouSafeHaven = true;
-                }
-            }
+            cOrigem.passouSafeHaven = true;
+            cOrigem.coordenadaHorizontal(-1);
+            cOrigem.coordenadaVertical(-1);
+            entrouSafeHeaven.add(cOrigem);
             turnosSemTransformacao++;
         } else if (equip != null) {
             if (equipaAtual == 10) {
@@ -643,7 +641,6 @@ public class TWDGameManager {
     public List<String> getAuthors() {
         ArrayList<String> autores = new ArrayList<>();
         autores.add("Rodrigo Sousa");
-        autores.add("Tomás Maia");
         return autores;
     }
 
@@ -757,13 +754,9 @@ public class TWDGameManager {
 
 
     public List<Integer> getIdsInSafeHaven() {
-        ArrayList<Integer> ids = new ArrayList<>();
-        for (Creature criatura : criaturas) {
-            if (criatura.passouSafeHaven) {
-                ids.add(criatura.getId());
-            }
-        }
-        return ids;
+        return entrouSafeHeaven.stream()
+                .map(creature -> creature.id)
+                .collect(Collectors.toList());
     }
 
     public int getEquipmentId(int creatureId) {
@@ -1028,6 +1021,7 @@ public class TWDGameManager {
         return criaturas.stream()
                 .filter(creature -> creature.getTipo() >= 0 && creature.getTipo() <= 4)
                 .sorted((c1, c2) -> ((Zombie) c2).numeroVivosTransformados - ((Zombie) c1).numeroVivosTransformados)
+                .filter(creature -> ((Zombie) creature).numeroVivosTransformados > 0)
                 .limit(3)
                 .map(creature -> creature.id + ":" + creature.nome + ":" + ((Zombie) creature).numeroVivosTransformados)
                 .collect(Collectors.toList());
@@ -1038,6 +1032,7 @@ public class TWDGameManager {
         return criaturas.stream()
                 .filter(creature -> creature.getTipo() >= 5 && creature.getTipo() <= 9)
                 .sorted((c1, c2) -> ((Humano) c2).zombiesDestruidos - ((Humano) c1).zombiesDestruidos)
+                .filter(creature -> ((Humano) creature).zombiesDestruidos > 0)
                 .limit(3)
                 .map(creature -> creature.id + ":" + creature.nome + ":" + ((Humano) creature).zombiesDestruidos)
                 .collect(Collectors.toList());
@@ -1046,6 +1041,7 @@ public class TWDGameManager {
     private List<String> getTiposDeEquipamentoMaisUteis() {
         return equipamentos.stream()
                 .sorted((e1, e2) -> e1.equipamentoSalvou - e2.equipamentoSalvou)
+                .filter(e -> e.equipamentoSalvou > 0)
                 .map(e -> e.idTipo + ":" + e.equipamentoSalvou)
                 .collect(Collectors.toList());
     }
@@ -1053,9 +1049,8 @@ public class TWDGameManager {
     private List<String> getTiposDeZombieESeusEquipamentosDestruidos() {
 
         //criaturas.stream().collect(
-          //      Collectors.groupingBy(Creature::getTipo,Collectors.summingInt(c->((Zombie)c).totalEquipDestrui)));
-
-        return null;
+        //      Collectors.groupingBy(Creature::getTipo,Collectors.summingInt(c->((Zombie)c).totalEquipDestrui)));
+        return new ArrayList<>() ;
     }
 
     private List<String> getCriaturasMaisEquipadas() {
@@ -1064,9 +1059,9 @@ public class TWDGameManager {
                 .sorted((c1, c2) -> {
                     if ((c1.getTipo() >= 0 && c1.getTipo() <= 4) && (c2.getTipo() >= 0 && c2.getTipo() <= 4)) {
                         return ((Zombie) c2).totalEquipDestrui - ((Zombie) c1).totalEquipDestrui;
-                    } else  if ((c1.getTipo() >= 5 && c1.getTipo() <= 9) && (c2.getTipo() >= 5 && c2.getTipo() <= 9)) {
+                    } else if ((c1.getTipo() >= 5 && c1.getTipo() <= 9) && (c2.getTipo() >= 5 && c2.getTipo() <= 9)) {
                         return ((Humano) c2).usados - ((Humano) c1).usados;
-                    }else{
+                    } else {
                         return 0;
                     }
                 })
@@ -1078,7 +1073,7 @@ public class TWDGameManager {
                     } else {
                         numeroEquip = ((Humano) c).usados;
                     }
-                    return c.id + ":" + c.nome + ":" + numeroEquip ;
+                    return c.id + ":" + c.nome + ":" + numeroEquip;
                 }).collect(Collectors.toList());
     }
 
