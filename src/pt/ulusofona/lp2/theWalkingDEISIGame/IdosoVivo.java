@@ -30,7 +30,7 @@ public class IdosoVivo extends Humano {
             return false;
         }
 
-        if (diaNoite == false) {
+        if (!diaNoite) {
             return false;
         }
         return true;

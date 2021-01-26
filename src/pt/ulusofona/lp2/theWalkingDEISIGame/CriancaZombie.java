@@ -10,7 +10,7 @@ public class CriancaZombie extends Zombie {
     @Override
     public String toString() {
 
-        return id + " | " + "Criança (Zombie)" + " | " + "Os Outros" + " | " + nome + " " + totalEquipDestrui +  " @ " + salvo();
+        return id + " | " + "Criança (Zombie)" + " | " + "Os Outros" + " | " + nome + " " + getToolsDestroy() +  " @ " + salvo();
     }
     @Override
     public boolean comportamentos(int xD, int yD, boolean diaNoite, boolean safeHaven) {

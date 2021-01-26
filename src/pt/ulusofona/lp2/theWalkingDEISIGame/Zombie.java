@@ -1,7 +1,6 @@
 package pt.ulusofona.lp2.theWalkingDEISIGame;
 
 public abstract class Zombie extends Creature {
-    int totalEquipDestrui;
     int numeroVivosTransformados;
 
     public Zombie(int id, int idTipo, String nome, int x, int y, String imagemPng) {

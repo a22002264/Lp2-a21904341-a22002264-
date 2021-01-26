@@ -486,6 +486,10 @@ public class TWDGameManager {
 
 
     private boolean validaSobreposicao(int xO, int yO, int xD, int yD) {
+        boolean eDiagonal = false;
+        if (xO != xD && yO != yD) {
+            eDiagonal = true;
+        }
         for (int i = 0; i < criaturas.size(); i++) {
             if (yO == yD && criaturas.get(i).x > xO && criaturas.get(i).x < xD) {
                 return true;
@@ -494,15 +498,16 @@ public class TWDGameManager {
                 return true;
             }
 
-            if (xO == yO && xD == yD) {
-                int xAux = criaturas.get(i).x;
-                int yAux = criaturas.get(i).y;
+            //     if (xO == yO && xD == yD) {
+            int xAux = criaturas.get(i).x;
+            int yAux = criaturas.get(i).y;
 
-                if (xAux == yAux && (xAux > xO && xAux < xD || yAux > yO && yAux < yD)) {
+            if (xAux == yAux && (xAux > xO && xAux < xD || yAux > yO && yAux < yD)) {
 
-                    return true;
-                }
+                return true;
             }
+            //}
+
         }
 
         return false;
@@ -1050,7 +1055,7 @@ public class TWDGameManager {
 
         //criaturas.stream().collect(
         //      Collectors.groupingBy(Creature::getTipo,Collectors.summingInt(c->((Zombie)c).totalEquipDestrui)));
-        return new ArrayList<>() ;
+        return new ArrayList<>();
     }
 
     private List<String> getCriaturasMaisEquipadas() {
@@ -1058,7 +1063,7 @@ public class TWDGameManager {
                 .filter(creature -> !creature.morta || !creature.passouSafeHaven)
                 .sorted((c1, c2) -> {
                     if ((c1.getTipo() >= 0 && c1.getTipo() <= 4) && (c2.getTipo() >= 0 && c2.getTipo() <= 4)) {
-                        return ((Zombie) c2).totalEquipDestrui - ((Zombie) c1).totalEquipDestrui;
+                        return (c2.getToolsDestroy() - c1.getToolsDestroy());
                     } else if ((c1.getTipo() >= 5 && c1.getTipo() <= 9) && (c2.getTipo() >= 5 && c2.getTipo() <= 9)) {
                         return ((Humano) c2).usados - ((Humano) c1).usados;
                     } else {
@@ -1069,7 +1074,7 @@ public class TWDGameManager {
                 .map(c -> {
                     int numeroEquip;
                     if ((c.getTipo() >= 0 && c.getTipo() <= 4)) {
-                        numeroEquip = ((Zombie) c).totalEquipDestrui;
+                        numeroEquip = c.getToolsDestroy();
                     } else {
                         numeroEquip = ((Humano) c).usados;
                     }

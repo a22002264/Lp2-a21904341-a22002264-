@@ -12,7 +12,7 @@ public class AdultoZombie extends Zombie {
     @Override
     public String toString() {
 
-        return id + " | " + "Adulto (Zombie)" + " | " + "Os Outros" + " | " + nome + " " + totalEquipDestrui + " @ " + salvo();
+        return id + " | " + "Adulto (Zombie)" + " | " + "Os Outros" + " | " + nome + " " + getToolsDestroy() + " @ " + salvo();
     }
 
     @Override
