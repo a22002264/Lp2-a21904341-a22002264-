@@ -27,7 +27,6 @@ public class TWDGameManager {
         this.houses = new ArrayList<>();
         this.entrouSafeHeaven = new ArrayList<>();
     }
-
     public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
         String nomeFicheiro = "Ficheiro.txt";
         int numeroDaLinha = 0;
