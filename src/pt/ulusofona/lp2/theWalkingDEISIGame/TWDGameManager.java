@@ -27,6 +27,7 @@ public class TWDGameManager {
         this.houses = new ArrayList<>();
         this.entrouSafeHeaven = new ArrayList<>();
     }
+
     public void startGame(File ficheiroInicial) throws InvalidTWDInitialFileException, FileNotFoundException {
         String nomeFicheiro = "Ficheiro.txt";
         int numeroDaLinha = 0;
@@ -483,35 +484,222 @@ public class TWDGameManager {
         return true;
     }
 
+    /*
+        private boolean validaSobreposicao(int xO, int yO, int xD, int yD) {
+            boolean eDiagonal = false;
+            if (xO != xD && yO != yD) {
+                eDiagonal = true;
+            }
+            for (int i = 0; i < criaturas.size(); i++) {
+                if (yO == yD && criaturas.get(i).x > xO && criaturas.get(i).x < xD) {
+                    return true;
+                }
+                if (xO == xD && criaturas.get(i).y > yO && criaturas.get(i).y < yD) {
+                    return true;
+                }
 
+                //     if (xO == yO && xD == yD) {
+                int xAux = criaturas.get(i).x;
+                int yAux = criaturas.get(i).y;
+
+                if (xAux == yAux && (xAux > xO && xAux < xD || yAux > yO && yAux < yD)) {
+
+                    return true;
+                }
+                //}
+
+            }
+
+            return false;
+        }
+
+
+     */
     private boolean validaSobreposicao(int xO, int yO, int xD, int yD) {
+        String esquerdaDireita = "";
+        String cimaBaixo = "";
+
         boolean eDiagonal = false;
         if (xO != xD && yO != yD) {
             eDiagonal = true;
+            if (yO > yD) {
+                cimaBaixo = "cima";
+            } else {
+                cimaBaixo = "baixo";
+            }
+            if (xO > xD) {
+                esquerdaDireita = "esquerda";
+            } else {
+                esquerdaDireita = "direita";
+            }
         }
-        for (int i = 0; i < criaturas.size(); i++) {
-            if (yO == yD && criaturas.get(i).x > xO && criaturas.get(i).x < xD) {
-                return true;
+
+        if (xO == xD) {
+            // o movimento é cima/baixo
+            if (yO > yD) {
+                // movimento é para cima
+                cimaBaixo = "cima";
+            } else {
+                // movimento é para baixo
+                cimaBaixo = "baixo";
             }
-            if (xO == xD && criaturas.get(i).y > yO && criaturas.get(i).y < yD) {
-                return true;
+        } else if (yO == yD) {
+            // o moviento é esquerda/direita
+            if (xO > xD) {
+                esquerdaDireita = "esquerda";
+            } else {
+                esquerdaDireita = "direita";
+            }
+        }
+
+        if (eDiagonal == false && cimaBaixo.equals("cima")) {
+            // movimento para cima -> y vai diminuir
+            int auxY = yO;
+            while (auxY != yD) {
+                --auxY;
+                int finalAuxY = auxY;
+                Creature a = criaturas
+                        .stream()
+                        .filter(c -> c.x == xO && c.y == finalAuxY)
+                        .findFirst()
+                        .orElse(null);
+                if (a != null) {
+                    return true;
+                }
             }
 
-            //     if (xO == yO && xD == yD) {
-            int xAux = criaturas.get(i).x;
-            int yAux = criaturas.get(i).y;
-
-            if (xAux == yAux && (xAux > xO && xAux < xD || yAux > yO && yAux < yD)) {
-
-                return true;
+            return false;
+        } else if (eDiagonal == false && cimaBaixo.equals("baixo")) {
+            // movimento para baixo -> y vai aumentar
+            int auxY = yO;
+            while (auxY != yD) {
+                ++auxY;
+                int finalAuxY = auxY;
+                Creature a = criaturas
+                        .stream()
+                        .filter(c -> c.x == xO && c.y == finalAuxY)
+                        .findFirst()
+                        .orElse(null);
+                if (a != null) {
+                    return true;
+                }
             }
-            //}
 
+            return false;
+        } else if (eDiagonal == false && esquerdaDireita.equals("esquerda")) {
+            // movimento para esquerda -> x vai diminuir
+            int auxX = xO;
+            while (auxX != xD) {
+                --auxX;
+                int finalAuxX = auxX;
+                Creature a = criaturas
+                        .stream()
+                        .filter(c -> c.x == finalAuxX && c.y == yO)
+                        .findFirst()
+                        .orElse(null);
+                if (a != null) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else if (eDiagonal == false && esquerdaDireita.equals("direita")) {
+            // movimento para direira -> x vai aumentar
+            int auxX = xO;
+            while (auxX != xD) {
+                ++auxX;
+                int finalAuxX = auxX;
+                Creature a = criaturas
+                        .stream()
+                        .filter(c -> c.x == finalAuxX && c.y == yO)
+                        .findFirst()
+                        .orElse(null);
+                if (a != null) {
+                    return true;
+                }
+            }
+
+            return false;
+        } else {
+            // é diagonal
+            int auxY = yO;
+            int auxX = xO;
+            if (cimaBaixo.equals("cima")) {
+                if (esquerdaDireita.equals("esquerda")) {
+                    while (auxX != xD && auxY != yD) {
+                        --auxX;
+                        --auxY;
+                        int finalAuxX = auxX;
+                        int finalAuxY = auxY;
+                        Creature a = criaturas
+                                .stream()
+                                .filter(c -> c.x == finalAuxX && c.y == finalAuxY)
+                                .findFirst()
+                                .orElse(null);
+                        if (a != null) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                } else if (esquerdaDireita.equals("direita")) {
+                    while (auxX != xD && auxY != yD) {
+                        ++auxX;
+                        --auxY;
+                        int finalAuxX = auxX;
+                        int finalAuxY = auxY;
+                        Creature a = criaturas
+                                .stream()
+                                .filter(c -> c.x == finalAuxX && c.y == finalAuxY)
+                                .findFirst()
+                                .orElse(null);
+                        if (a != null) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+            } else if (cimaBaixo.equals("baixo")) {
+                if (esquerdaDireita.equals("esquerda")) {
+                    while (auxX != xD && auxY != yD) {
+                        --auxX;
+                        ++auxY;
+                        int finalAuxX = auxX;
+                        int finalAuxY = auxY;
+                        Creature a = criaturas
+                                .stream()
+                                .filter(c -> c.x == finalAuxX && c.y == finalAuxY)
+                                .findFirst()
+                                .orElse(null);
+                        if (a != null) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                } else if (esquerdaDireita.equals("direita")) {
+                    while (auxX != xD && auxY != yD) {
+                        ++auxX;
+                        ++auxY;
+                        int finalAuxX = auxX;
+                        int finalAuxY = auxY;
+                        Creature a = criaturas
+                                .stream()
+                                .filter(c -> c.x == finalAuxX && c.y == finalAuxY)
+                                .findFirst()
+                                .orElse(null);
+                        if (a != null) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
         }
 
         return false;
     }
-
 
     private void mudarDiaNoite() {
         --diasDiaNoite;
