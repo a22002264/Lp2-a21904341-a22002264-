@@ -206,6 +206,7 @@ public class TWDGameManager {
 
     public boolean move(int xO, int yO, int xD, int yD) {
 
+        /*
         for (Creature idoso : criaturas) {
 
             if (idoso.getTipo() == 8 && !(idoso.morta)) {
@@ -217,6 +218,8 @@ public class TWDGameManager {
                 }
             }
         }
+        
+         */
 
 
         if (!(validarCoordenadas(xO, yO, xD, yD))) {
